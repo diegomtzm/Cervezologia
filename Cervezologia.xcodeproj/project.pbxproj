@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8EA451ED333B29C5A7BD9387 /* Pods_Cervezologia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3378A857F23AC2365EB1553C /* Pods_Cervezologia.framework */; };
 		D4280C932243F66C006CCF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C922243F66C006CCF30 /* AppDelegate.swift */; };
 		D4280C952243F66C006CCF30 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C942243F66C006CCF30 /* FirstViewController.swift */; };
 		D4280C972243F66C006CCF30 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C962243F66C006CCF30 /* SecondViewController.swift */; };
 		D4280C9A2243F66C006CCF30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4280C982243F66C006CCF30 /* Main.storyboard */; };
 		D4280C9C2243F66C006CCF30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4280C9B2243F66C006CCF30 /* Assets.xcassets */; };
 		D4280C9F2243F66C006CCF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4280C9D2243F66C006CCF30 /* LaunchScreen.storyboard */; };
+		D4280CA72243FCC8006CCF30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4280CA62243FCC8006CCF30 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3378A857F23AC2365EB1553C /* Pods_Cervezologia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cervezologia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9205DAB941DB1141357AC199 /* Pods-Cervezologia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cervezologia.debug.xcconfig"; path = "Target Support Files/Pods-Cervezologia/Pods-Cervezologia.debug.xcconfig"; sourceTree = "<group>"; };
+		9DBBBAC4368B6D80F1587ED6 /* Pods-Cervezologia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cervezologia.release.xcconfig"; path = "Target Support Files/Pods-Cervezologia/Pods-Cervezologia.release.xcconfig"; sourceTree = "<group>"; };
 		D4280C8F2243F66C006CCF30 /* Cervezologia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cervezologia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4280C922243F66C006CCF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4280C942243F66C006CCF30 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +29,7 @@
 		D4280C9B2243F66C006CCF30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4280C9E2243F66C006CCF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4280CA02243F66C006CCF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4280CA62243FCC8006CCF30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EA451ED333B29C5A7BD9387 /* Pods_Cervezologia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1DDFB363A4CEC0C5DA770696 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3378A857F23AC2365EB1553C /* Pods_Cervezologia.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C98328F51E65B9655E47AA4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9205DAB941DB1141357AC199 /* Pods-Cervezologia.debug.xcconfig */,
+				9DBBBAC4368B6D80F1587ED6 /* Pods-Cervezologia.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D4280C862243F66C006CCF30 = {
 			isa = PBXGroup;
 			children = (
 				D4280C912243F66C006CCF30 /* Cervezologia */,
 				D4280C902243F66C006CCF30 /* Products */,
+				8C98328F51E65B9655E47AA4 /* Pods */,
+				1DDFB363A4CEC0C5DA770696 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +90,7 @@
 				D4280C9B2243F66C006CCF30 /* Assets.xcassets */,
 				D4280C9D2243F66C006CCF30 /* LaunchScreen.storyboard */,
 				D4280CA02243F66C006CCF30 /* Info.plist */,
+				D4280CA62243FCC8006CCF30 /* GoogleService-Info.plist */,
 			);
 			path = Cervezologia;
 			sourceTree = "<group>";
@@ -74,9 +102,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4280CA32243F66C006CCF30 /* Build configuration list for PBXNativeTarget "Cervezologia" */;
 			buildPhases = (
+				5E4D58622F9DCCEDCFD9A83C /* [CP] Check Pods Manifest.lock */,
 				D4280C8B2243F66C006CCF30 /* Sources */,
 				D4280C8C2243F66C006CCF30 /* Frameworks */,
 				D4280C8D2243F66C006CCF30 /* Resources */,
+				90BA0CCBA03C5B7C809F0F2D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,12 +156,62 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4280C9F2243F66C006CCF30 /* LaunchScreen.storyboard in Resources */,
+				D4280CA72243FCC8006CCF30 /* GoogleService-Info.plist in Resources */,
 				D4280C9C2243F66C006CCF30 /* Assets.xcassets in Resources */,
 				D4280C9A2243F66C006CCF30 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5E4D58622F9DCCEDCFD9A83C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cervezologia-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90BA0CCBA03C5B7C809F0F2D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cervezologia/Pods-Cervezologia-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cervezologia/Pods-Cervezologia-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D4280C8B2243F66C006CCF30 /* Sources */ = {
@@ -284,6 +364,7 @@
 		};
 		D4280CA42243F66C006CCF30 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9205DAB941DB1141357AC199 /* Pods-Cervezologia.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -301,6 +382,7 @@
 		};
 		D4280CA52243F66C006CCF30 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DBBBAC4368B6D80F1587ED6 /* Pods-Cervezologia.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
