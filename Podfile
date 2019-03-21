@@ -8,5 +8,6 @@ target 'Cervezologia' do
   # Pods for Cervezologia
 
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
 end
