@@ -9,11 +9,15 @@
 import UIKit
 import Firebase
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, UISearchBarDelegate {
     
     var db: Firestore!
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    var searchActive: Bool = false
     var cervezas = [Cerveza]()
+    var filteredCervezas = [Cerveza]()
+    
     var alturaCelda = CGFloat(122)
 
     override func viewDidLoad() {
@@ -26,13 +30,10 @@ class TableViewController: UITableViewController {
         // [END setup]
         db = Firestore.firestore()
         
+        //search bar delegate
+        searchBar.delegate = self
+        
         getBeers()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     //get cervezas from database
@@ -58,6 +59,7 @@ class TableViewController: UITableViewController {
 
                     let cerveza = Cerveza(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, fotoURL: fotoURL)
                     self.cervezas.append(cerveza)
+                    print(cerveza.nombre)
                 }
                 self.tableView.reloadData()
             }
@@ -81,9 +83,39 @@ class TableViewController: UITableViewController {
         }
         
     }
+    //MARK: - Search bar functions
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //filtra cervezas por nombre o por estilo
+        filteredCervezas = cervezas.filter({ (text) -> Bool in
+            text.nombre.lowercased().contains(searchText.lowercased()) || text.estilo.lowercased().contains(searchText.lowercased())
+        })
+        if(filteredCervezas.count == 0){
+            searchActive = false;
+        } else {
+            searchActive = true;
+        }
+        self.tableView.reloadData()
+    }
+    
+    
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -91,8 +123,11 @@ class TableViewController: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return cervezas.count
+        if searchActive {
+            return filteredCervezas.count
+        } else {
+            return cervezas.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -101,10 +136,18 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "idCell", for: indexPath) as! CustomTableViewCell
-        cell.lbNombre.text = cervezas[indexPath.row].nombre
-        cell.lbEstilo.text = cervezas[indexPath.row].estilo
-        let foto = photoFromURL(urlString: cervezas[indexPath.row].fotoURL)
-        cell.imgFoto.image = foto
+        if searchActive {
+            cell.lbNombre.text = filteredCervezas[indexPath.row].nombre
+            cell.lbEstilo.text = filteredCervezas[indexPath.row].estilo
+            let foto = photoFromURL(urlString: filteredCervezas[indexPath.row].fotoURL)
+            cell.imgFoto.image = foto
+        } else {
+            cell.lbNombre.text = cervezas[indexPath.row].nombre
+            cell.lbEstilo.text = cervezas[indexPath.row].estilo
+            let foto = photoFromURL(urlString: cervezas[indexPath.row].fotoURL)
+            cell.imgFoto.image = foto
+        }
+        
         
         return cell
     }
