@@ -17,9 +17,9 @@ class Cerveza : NSObject {
     var abv : String = ""
     var ibu : String = ""
     var srm : String = ""
-    var foto : UIImage?
+    var fotoURL : String = ""
     
-    init(nombre : String, estilo : String, cerveceria : String, origen : String, abv : String, ibu : String, srm : String, foto : UIImage?) {
+    init(nombre : String, estilo : String, cerveceria : String, origen : String, abv : String, ibu : String, srm : String, fotoURL : String) {
         self.nombre = nombre
         self.estilo = estilo
         self.cerveceria = cerveceria
@@ -27,7 +27,7 @@ class Cerveza : NSObject {
         self.abv = abv
         self.ibu = ibu
         self.srm = srm
-        self.foto = foto
+        self.fotoURL = fotoURL
     }
 }
 

@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class TableViewController: UITableViewController {
+    
+    var db: Firestore!
     
     var cervezas = [Cerveza]()
     var alturaCelda = CGFloat(122)
@@ -16,24 +19,67 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let cerveza = Cerveza(nombre: "XX", estilo: "lager", cerveceria: "Chapultepec", origen: "Mexico", abv: "e", ibu: "a", srm: "q", foto: nil)
+        // [START setup]
+        let settings = FirestoreSettings()
         
+        Firestore.firestore().settings = settings
+        // [END setup]
+        db = Firestore.firestore()
         
-        if cerveza.foto == nil {
-            cerveza.foto = UIImage(named: "cerveza")
-        }
-        cervezas.append(cerveza)
-        cervezas.append(cerveza)
-        cervezas.append(cerveza)
-        cervezas.append(cerveza)
-        cervezas.append(cerveza)
-        cervezas.append(cerveza)
+        getBeers()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    //get cervezas from database
+    func getBeers() {
+        db.collection("Cervezas").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+//          debug getting collections correctly
+//                for document in querySnapshot!.documents {
+//                    print("\(document.documentID) => \(document.data())")
+//                }
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let nombre = data["Nombre"] as! String
+                    let estilo = data["Estilo"] as! String
+                    let cerveceria = data["Cervecería"] as! String
+                    let origen = data["Origen"] as! String
+                    let abv = data["ABV"] as! String
+                    let ibu = data["IBU"] as! String
+                    let srm = data["SRM"] as! String
+                    let fotoURL = data["fotoURL"] as! String
+
+                    let cerveza = Cerveza(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, fotoURL: fotoURL)
+                    self.cervezas.append(cerveza)
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func photoFromURL(urlString: String) -> UIImage {
+        if let url = URL(string: urlString) {
+            do {
+                let data = try Data(contentsOf: url)
+                let foto = UIImage(data: data)!
+                return foto
+            } catch let err {
+                print("Error : \(err.localizedDescription)")
+                let fotoGenerica = UIImage(named: "cerveza")!
+                return fotoGenerica
+            }
+        } else {
+            let fotoGenerica = UIImage(named: "cerveza")!
+            return fotoGenerica
+        }
+        
     }
 
     // MARK: - Table view data source
@@ -57,7 +103,8 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "idCell", for: indexPath) as! CustomTableViewCell
         cell.lbNombre.text = cervezas[indexPath.row].nombre
         cell.lbEstilo.text = cervezas[indexPath.row].estilo
-        cell.imgFoto.image = cervezas[indexPath.row].foto
+        let foto = photoFromURL(urlString: cervezas[indexPath.row].fotoURL)
+        cell.imgFoto.image = foto
         
         return cell
     }
@@ -112,7 +159,8 @@ class TableViewController: UITableViewController {
         vista.abv = cervezas[indexPath.row].abv
         vista.ibu = cervezas[indexPath.row].ibu
         vista.srm = cervezas[indexPath.row].srm
-        vista.foto = cervezas[indexPath.row].foto
+        let foto = photoFromURL(urlString: cervezas[indexPath.row].fotoURL)
+        vista.foto = foto
         
     }
 
