@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8EA451ED333B29C5A7BD9387 /* Pods_Cervezologia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3378A857F23AC2365EB1553C /* Pods_Cervezologia.framework */; };
+		D40F0CDC2248B72100477C6E /* Cerveza.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F0CDB2248B72000477C6E /* Cerveza.swift */; };
 		D4280C932243F66C006CCF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C922243F66C006CCF30 /* AppDelegate.swift */; };
 		D4280C952243F66C006CCF30 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C942243F66C006CCF30 /* FirstViewController.swift */; };
 		D4280C972243F66C006CCF30 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C962243F66C006CCF30 /* SecondViewController.swift */; };
@@ -21,6 +22,7 @@
 		3378A857F23AC2365EB1553C /* Pods_Cervezologia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cervezologia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9205DAB941DB1141357AC199 /* Pods-Cervezologia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cervezologia.debug.xcconfig"; path = "Target Support Files/Pods-Cervezologia/Pods-Cervezologia.debug.xcconfig"; sourceTree = "<group>"; };
 		9DBBBAC4368B6D80F1587ED6 /* Pods-Cervezologia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cervezologia.release.xcconfig"; path = "Target Support Files/Pods-Cervezologia/Pods-Cervezologia.release.xcconfig"; sourceTree = "<group>"; };
+		D40F0CDB2248B72000477C6E /* Cerveza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Cerveza.swift; path = "/Users/diegomartinez/Desktop/iOS/Proyecto /Cervezologia/Cervezologia/Cerveza.swift"; sourceTree = "<absolute>"; };
 		D4280C8F2243F66C006CCF30 /* Cervezologia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cervezologia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4280C922243F66C006CCF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4280C942243F66C006CCF30 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -58,7 +60,6 @@
 				9205DAB941DB1141357AC199 /* Pods-Cervezologia.debug.xcconfig */,
 				9DBBBAC4368B6D80F1587ED6 /* Pods-Cervezologia.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -84,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				D4280C922243F66C006CCF30 /* AppDelegate.swift */,
+				D40F0CDB2248B72000477C6E /* Cerveza.swift */,
 				D4280C942243F66C006CCF30 /* FirstViewController.swift */,
 				D4280C962243F66C006CCF30 /* SecondViewController.swift */,
 				D4280C982243F66C006CCF30 /* Main.storyboard */,
@@ -220,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40F0CDC2248B72100477C6E /* Cerveza.swift in Sources */,
 				D4280C972243F66C006CCF30 /* SecondViewController.swift in Sources */,
 				D4280C932243F66C006CCF30 /* AppDelegate.swift in Sources */,
 				D4280C952243F66C006CCF30 /* FirstViewController.swift in Sources */,
