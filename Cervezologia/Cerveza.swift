@@ -1,24 +1,25 @@
 //
 //  Cerveza.swift
-//  
+//  Cervezologia
 //
-//  Created by Diego Martinez on 3/25/19.
+//  Created by Linetes on 3/25/19.
+//  Copyright © 2019 Diego Martinez. All rights reserved.
 //
 
 import UIKit
 
-class Cerveza: NSObject {
+class Cerveza : NSObject {
     
-    var nombre : String
-    var estilo : String
-    var cerveceria : String
-    var origen : String
-    var abv : Int
-    var ibu : Int
-    var srm : Int
-    var foto : UIImage!
+    var nombre : String = ""
+    var estilo : String = ""
+    var cerveceria : String = ""
+    var origen : String = ""
+    var abv : String = ""
+    var ibu : String = ""
+    var srm : String = ""
+    var foto : UIImage?
     
-    init(nombre : String, estilo : String, cerveceria : String, origen : String, abv : Int, ibu : Int, srm : Int, foto : UIImage!) {
+    init(nombre : String, estilo : String, cerveceria : String, origen : String, abv : String, ibu : String, srm : String, foto : UIImage?) {
         self.nombre = nombre
         self.estilo = estilo
         self.cerveceria = cerveceria
@@ -28,5 +29,5 @@ class Cerveza: NSObject {
         self.srm = srm
         self.foto = foto
     }
-
 }
+

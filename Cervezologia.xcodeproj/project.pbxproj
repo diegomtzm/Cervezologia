@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81BFA0272248C3DC00B2DDBE /* Cerveza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA0222248C3DB00B2DDBE /* Cerveza.swift */; };
+		81BFA0282248C3DC00B2DDBE /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA0232248C3DC00B2DDBE /* FirstViewController.swift */; };
+		81BFA0292248C3DC00B2DDBE /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA0242248C3DC00B2DDBE /* CustomTableViewCell.swift */; };
+		81BFA02A2248C3DC00B2DDBE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA0252248C3DC00B2DDBE /* TableViewController.swift */; };
+		81BFA02B2248C3DC00B2DDBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA0262248C3DC00B2DDBE /* ViewController.swift */; };
 		8EA451ED333B29C5A7BD9387 /* Pods_Cervezologia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3378A857F23AC2365EB1553C /* Pods_Cervezologia.framework */; };
-		D40F0CDC2248B72100477C6E /* Cerveza.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F0CDB2248B72000477C6E /* Cerveza.swift */; };
 		D4280C932243F66C006CCF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C922243F66C006CCF30 /* AppDelegate.swift */; };
-		D4280C952243F66C006CCF30 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C942243F66C006CCF30 /* FirstViewController.swift */; };
-		D4280C972243F66C006CCF30 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C962243F66C006CCF30 /* SecondViewController.swift */; };
 		D4280C9A2243F66C006CCF30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4280C982243F66C006CCF30 /* Main.storyboard */; };
 		D4280C9C2243F66C006CCF30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4280C9B2243F66C006CCF30 /* Assets.xcassets */; };
 		D4280C9F2243F66C006CCF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4280C9D2243F66C006CCF30 /* LaunchScreen.storyboard */; };
@@ -20,13 +22,15 @@
 
 /* Begin PBXFileReference section */
 		3378A857F23AC2365EB1553C /* Pods_Cervezologia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cervezologia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81BFA0222248C3DB00B2DDBE /* Cerveza.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cerveza.swift; sourceTree = "<group>"; };
+		81BFA0232248C3DC00B2DDBE /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		81BFA0242248C3DC00B2DDBE /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		81BFA0252248C3DC00B2DDBE /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		81BFA0262248C3DC00B2DDBE /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9205DAB941DB1141357AC199 /* Pods-Cervezologia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cervezologia.debug.xcconfig"; path = "Target Support Files/Pods-Cervezologia/Pods-Cervezologia.debug.xcconfig"; sourceTree = "<group>"; };
 		9DBBBAC4368B6D80F1587ED6 /* Pods-Cervezologia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cervezologia.release.xcconfig"; path = "Target Support Files/Pods-Cervezologia/Pods-Cervezologia.release.xcconfig"; sourceTree = "<group>"; };
-		D40F0CDB2248B72000477C6E /* Cerveza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Cerveza.swift; path = "/Users/diegomartinez/Desktop/iOS/Proyecto /Cervezologia/Cervezologia/Cerveza.swift"; sourceTree = "<absolute>"; };
 		D4280C8F2243F66C006CCF30 /* Cervezologia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cervezologia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4280C922243F66C006CCF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D4280C942243F66C006CCF30 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		D4280C962243F66C006CCF30 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		D4280C992243F66C006CCF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D4280C9B2243F66C006CCF30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4280C9E2243F66C006CCF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -84,10 +88,12 @@
 		D4280C912243F66C006CCF30 /* Cervezologia */ = {
 			isa = PBXGroup;
 			children = (
+				81BFA0222248C3DB00B2DDBE /* Cerveza.swift */,
+				81BFA0242248C3DC00B2DDBE /* CustomTableViewCell.swift */,
+				81BFA0232248C3DC00B2DDBE /* FirstViewController.swift */,
+				81BFA0252248C3DC00B2DDBE /* TableViewController.swift */,
+				81BFA0262248C3DC00B2DDBE /* ViewController.swift */,
 				D4280C922243F66C006CCF30 /* AppDelegate.swift */,
-				D40F0CDB2248B72000477C6E /* Cerveza.swift */,
-				D4280C942243F66C006CCF30 /* FirstViewController.swift */,
-				D4280C962243F66C006CCF30 /* SecondViewController.swift */,
 				D4280C982243F66C006CCF30 /* Main.storyboard */,
 				D4280C9B2243F66C006CCF30 /* Assets.xcassets */,
 				D4280C9D2243F66C006CCF30 /* LaunchScreen.storyboard */,
@@ -222,10 +228,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D40F0CDC2248B72100477C6E /* Cerveza.swift in Sources */,
-				D4280C972243F66C006CCF30 /* SecondViewController.swift in Sources */,
+				81BFA02B2248C3DC00B2DDBE /* ViewController.swift in Sources */,
+				81BFA0282248C3DC00B2DDBE /* FirstViewController.swift in Sources */,
+				81BFA0272248C3DC00B2DDBE /* Cerveza.swift in Sources */,
+				81BFA0292248C3DC00B2DDBE /* CustomTableViewCell.swift in Sources */,
+				81BFA02A2248C3DC00B2DDBE /* TableViewController.swift in Sources */,
 				D4280C932243F66C006CCF30 /* AppDelegate.swift in Sources */,
-				D4280C952243F66C006CCF30 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
