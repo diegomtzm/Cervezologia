@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var lbIbu: UILabel!
     @IBOutlet weak var lbSrm: UILabel!
     @IBOutlet weak var imgFoto: UIImageView!
+    @IBOutlet weak var btFavorito: UIButton!
+    
     
     var nombre : String = ""
     var estilo : String = ""
@@ -41,6 +43,16 @@ class ViewController: UIViewController {
         lbSrm.text = srm
         imgFoto.image = foto
     }
+    
+    @IBAction func btListaDeInteres(_ sender: UIButton) {
+        if sender.image(for: .normal) == UIImage(named: "star") {
+            sender.setImage(UIImage(named: "starFilled"), for: .normal)
+        } else {
+            sender.setImage(UIImage(named: "star"), for: .normal)
+        }
+    }
+    
+    
     
 
     /*
