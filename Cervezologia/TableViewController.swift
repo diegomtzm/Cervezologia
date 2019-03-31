@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class TableViewController: UITableViewController, UISearchBarDelegate {
+class TableViewController: UITableViewController, UISearchBarDelegate, poblateFilterDropDowns {
     
     var db: Firestore!
     
@@ -18,7 +18,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     var cervezas = [Cerveza]()
     var filteredCervezas = [Cerveza]()
     
-    var alturaCelda = CGFloat(122)
+    let alturaCelda = CGFloat(122)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +42,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-//          debug getting collections correctly
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//                }
                 for document in querySnapshot!.documents {
                     let data = document.data()
                     let nombre = data["Nombre"] as! String
@@ -59,7 +55,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
 
                     let cerveza = Cerveza(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, fotoURL: fotoURL)
                     self.cervezas.append(cerveza)
-                    print(cerveza.nombre)
                 }
                 self.tableView.reloadData()
             }
@@ -105,14 +100,13 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         filteredCervezas = cervezas.filter({ (text) -> Bool in
             text.nombre.lowercased().contains(searchText.lowercased()) || text.estilo.lowercased().contains(searchText.lowercased())
         })
-        if(filteredCervezas.count == 0){
-            searchActive = false;
+        if searchText == "" {
+            searchActive = false
         } else {
-            searchActive = true;
+            searchActive = true
         }
         self.tableView.reloadData()
     }
-    
     
 
     // MARK: - Table view data source
@@ -121,7 +115,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         return 1
     }
     
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchActive {
             return filteredCervezas.count
@@ -147,7 +140,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             let foto = photoFromURL(urlString: cervezas[indexPath.row].fotoURL)
             cell.imgFoto.image = foto
         }
-        
         
         return cell
     }
@@ -193,18 +185,66 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        let vista = segue.destination as! ViewController
-        let indexPath = tableView.indexPathForSelectedRow!
-        vista.nombre = cervezas[indexPath.row].nombre
-        vista.estilo = cervezas[indexPath.row].estilo
-        vista.cerveceria = cervezas[indexPath.row].cerveceria
-        vista.origen = cervezas[indexPath.row].origen
-        vista.abv = cervezas[indexPath.row].abv
-        vista.ibu = cervezas[indexPath.row].ibu
-        vista.srm = cervezas[indexPath.row].srm
-        let foto = photoFromURL(urlString: cervezas[indexPath.row].fotoURL)
-        vista.foto = foto
+        if segue.identifier == "BeerDetail" {
+            let vista = segue.destination as! BeerDetailViewController
+            
+            let indexPath = tableView.indexPathForSelectedRow!
+            if searchActive {
+                vista.nombre = filteredCervezas[indexPath.row].nombre
+                vista.estilo = filteredCervezas[indexPath.row].estilo
+                vista.cerveceria = filteredCervezas[indexPath.row].cerveceria
+                vista.origen = filteredCervezas[indexPath.row].origen
+                vista.abv = filteredCervezas[indexPath.row].abv
+                vista.ibu = filteredCervezas[indexPath.row].ibu
+                vista.srm = filteredCervezas[indexPath.row].srm
+                let foto = photoFromURL(urlString: filteredCervezas[indexPath.row].fotoURL)
+                vista.foto = foto
+            } else {
+                vista.nombre = cervezas[indexPath.row].nombre
+                vista.estilo = cervezas[indexPath.row].estilo
+                vista.cerveceria = cervezas[indexPath.row].cerveceria
+                vista.origen = cervezas[indexPath.row].origen
+                vista.abv = cervezas[indexPath.row].abv
+                vista.ibu = cervezas[indexPath.row].ibu
+                vista.srm = cervezas[indexPath.row].srm
+                let foto = photoFromURL(urlString: cervezas[indexPath.row].fotoURL)
+                vista.foto = foto
+            }
         
+        } else {
+            let vista = segue.destination as! FilterViewController
+            vista.delegado = self
+            
+        }
+    }
+    
+    @IBAction func unwindFilter(unwindSegue: UIStoryboardSegue) {
+        tableView.reloadData()
+    }
+    
+    // MARK: - poblateFilterDropDowns protocol
+    func getEstilos() -> Set<String> {
+        var estilos = Set<String>()
+        for cerveza in cervezas {
+            estilos.insert(cerveza.estilo)
+        }
+        return estilos
+    }
+    
+    func getCervecerias() -> Set<String> {
+        var cervecerias = Set<String>()
+        for cerveza in cervezas {
+            cervecerias.insert(cerveza.cerveceria)
+        }
+        return cervecerias
+    }
+    
+    func getOrigenes() -> Set<String> {
+        var origenes = Set<String>()
+        for cerveza in cervezas {
+            origenes.insert(cerveza.origen)
+        }
+        return origenes
     }
 
 }
