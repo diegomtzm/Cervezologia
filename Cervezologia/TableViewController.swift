@@ -233,21 +233,21 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
         filteredCervezas = cervezas
         if (estilo != "") {
             filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
-                cerveza.estilo.lowercased().contains(estilo.lowercased())
+                cerveza.estilo.lowercased().elementsEqual(estilo.lowercased())
             })
             print("FILTRA ESTILO")
             print(filteredCervezas.count)
         }
         if (cerveceria != "") {
             filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
-                cerveza.cerveceria.lowercased().contains(cerveceria.lowercased())
+                cerveza.cerveceria.lowercased().elementsEqual(cerveceria.lowercased())
             })
             print("FILTRA CERVECERIA")
             print(filteredCervezas.count)
         }
         if (origen != "") {
             filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
-                cerveza.origen.lowercased().contains(origen.lowercased())
+                cerveza.origen.lowercased().elementsEqual(origen.lowercased())
             })
             print("FILTRA ORIGEN")
             print(filteredCervezas.count)
