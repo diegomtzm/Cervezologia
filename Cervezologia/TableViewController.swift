@@ -17,6 +17,12 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
     var searchActive: Bool = false
     var cervezas = [Cerveza]()
     var filteredCervezas = [Cerveza]()
+    var usedFilters = ["estilo": ["", 0],
+                       "cerveceria": ["", 0],
+                       "origen": ["", 0],
+                       "abv": ["", 0],
+                       "ibu": ["", 0],
+                       "srm": ["", 0]]
     
     let alturaCelda = CGFloat(122)
 
@@ -214,7 +220,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
         } else {
             let vista = segue.destination as! FilterViewController
             vista.delegado = self
-            
+            searchActive = true
         }
     }
     
@@ -301,6 +307,13 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
         self.tableView.reloadData()
     }
     
+    func setUsedFilters(key: String, values: [Any]) {
+        usedFilters[key] = values
+    }
+    
+    func getUsedFilters() -> [String : [Any]] {
+        return usedFilters
+    }
     
     func getEstilos() -> Set<String> {
         var estilos = Set<String>()

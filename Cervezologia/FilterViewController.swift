@@ -13,6 +13,8 @@ protocol FilterOptions {
     func getEstilos() -> Set<String>
     func getCervecerias() -> Set<String>
     func getOrigenes() -> Set<String>
+    func getUsedFilters() -> [String: [Any]]
+    func setUsedFilters(key: String, values: [Any])
     func filter(estilo: String, cerveceria: String, origen: String, abvIndex: Int, ibuIndex: Int, srmIndex: Int)
 }
 
@@ -30,13 +32,8 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var ddIBU: DropDown!
     @IBOutlet weak var ddSRM: DropDown!
     
-    var estilo = ""
-    var cerveceria = ""
-    var origen = ""
-    var abvIdx = 0
-    var ibuIdx = 0
-    var srmIdx = 0
-    
+    //[key: [text, index]]
+    var usedFilters : [String: [Any]]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,24 +41,46 @@ class FilterViewController: UIViewController {
         initDropDowns()
         
         ddEstilo.didSelect { (text, index, id) in
-            self.estilo = text
+            self.delegado.setUsedFilters(key: "estilo", values: [text, index])
         }
         ddCerveceria.didSelect { (text, index, id) in
-            self.cerveceria = text
+            self.delegado.setUsedFilters(key: "cerveceria", values: [text, index])
         }
         ddOrigen.didSelect { (text, index, id) in
-            self.origen = text
+            self.delegado.setUsedFilters(key: "origen", values: [text, index])
         }
         ddABV.didSelect { (text, index, id) in
-            self.abvIdx = index
+            self.delegado.setUsedFilters(key: "abv", values: [text, index])
         }
         ddIBU.didSelect { (text, index, id) in
-            self.ibuIdx = index
+            self.delegado.setUsedFilters(key: "ibu", values: [text, index])
         }
         ddSRM.didSelect { (text, index, id) in
-            self.srmIdx = index
+            self.delegado.setUsedFilters(key: "srm", values: [text, index])
         }
         
+    }
+    
+    func preselectFilterOptions () {
+        usedFilters = delegado.getUsedFilters()
+        //estilo
+        ddEstilo.selectedIndex = usedFilters["estilo"]?[1] as? Int
+        ddEstilo.text = usedFilters["estilo"]?[0] as? String
+        //cerveceria
+        ddCerveceria.selectedIndex = usedFilters["cerveceria"]?[1] as? Int
+        ddCerveceria.text = usedFilters["cerveceria"]?[0] as? String
+        //origen
+        ddOrigen.selectedIndex = usedFilters["origen"]?[1] as? Int
+        ddOrigen.text = usedFilters["origen"]?[0] as? String
+        //ABV
+        ddABV.selectedIndex = usedFilters["abv"]?[1] as? Int
+        ddABV.text = usedFilters["abv"]?[0] as? String
+        //IBU
+        ddIBU.selectedIndex = usedFilters["ibu"]?[1] as? Int
+        ddIBU.text = usedFilters["ibu"]?[0] as? String
+        //SRM
+        ddSRM.selectedIndex = usedFilters["srm"]?[1] as? Int
+        ddSRM.text = usedFilters["srm"]?[0] as? String
     }
     
     func initDropDowns() {
@@ -70,62 +89,43 @@ class FilterViewController: UIViewController {
         
         //estilo
         ddEstilo.optionArray = [""] + Array(delegado.getEstilos())
-        ddEstilo.selectedIndex = 0
         ddEstilo.selectedRowColor = lightGray
         ddEstilo.arrowSize = 12
         //cerveceria
         ddCerveceria.optionArray = [""] + Array(delegado.getCervecerias())
-        ddCerveceria.selectedIndex = 0
         ddCerveceria.selectedRowColor = lightGray
         ddCerveceria.arrowSize = 12
         //origen
         ddOrigen.optionArray = [""] + Array(delegado.getOrigenes())
-        ddOrigen.selectedIndex = 0
         ddOrigen.selectedRowColor = lightGray
         ddOrigen.arrowSize = 12
         //ABV
         ddABV.optionArray = ["", "0-4", "4-6", "6-8", "8-10", "> 10"]
-        ddABV.selectedIndex = 0
         ddABV.selectedRowColor = lightGray
         ddABV.arrowSize = 12
         ddABV.isSearchEnable = false
         //IBU
         ddIBU.optionArray = ["", "0-20", "20-40", "40-60", "60-80", "80-100", "> 100"]
-        ddIBU.selectedIndex = 0
         ddIBU.selectedRowColor = lightGray
         ddIBU.arrowSize = 12
         ddIBU.isSearchEnable = false
         //SRM
         ddSRM.optionArray = ["", "0-10", "10-20", "20-30", "30-40"]
-        ddSRM.selectedIndex = 0
         ddSRM.selectedRowColor = lightGray
         ddSRM.arrowSize = 12
         ddSRM.isSearchEnable = false
+        
+        preselectFilterOptions()
     }
     
     @IBAction func limpiarFiltros(_ sender: UIButton) {
-        //estilo
-        ddEstilo.selectedIndex = 0
-        ddEstilo.text = ""
-        //cerveceria
-        ddCerveceria.selectedIndex = 0
-        ddCerveceria.text = ""
-        //origen
-        ddOrigen.selectedIndex = 0
-        ddOrigen.text = ""
-        //ABV
-        ddABV.selectedIndex = 0
-        ddABV.text = ""
-        //IBU
-        ddIBU.selectedIndex = 0
-        ddIBU.text = ""
-        //SRM
-        ddSRM.selectedIndex = 0
-        ddSRM.text = ""
+        let arr = ["estilo", "cerveceria", "origen", "abv", "ibu", "srm"]
+        for k in arr {
+            self.delegado.setUsedFilters(key: k, values: ["", 0])
+        }
+        preselectFilterOptions()
     }
     
-    
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -134,8 +134,16 @@ class FilterViewController: UIViewController {
         let vista = segue.destination as! TableViewController
         
         if (sender as! UIButton) == btAplicar {
+            usedFilters = self.delegado.getUsedFilters()
+            let estilo = usedFilters["estilo"]?[0] as! String
+            let cerveceria = usedFilters["cerveceria"]?[0] as! String
+            let origen = usedFilters["origen"]?[0] as! String
+            let abvIdx = usedFilters["abv"]?[1] as! Int
+            let ibuIdx = usedFilters["ibu"]?[1] as! Int
+            let srmIdx = usedFilters["srm"]?[1] as! Int
             self.delegado.filter(estilo: estilo, cerveceria: cerveceria, origen: origen, abvIndex: abvIdx, ibuIndex: ibuIdx, srmIndex: srmIdx)
         } else {
+            limpiarFiltros(btCancelar)
             vista.searchActive = false
             vista.searchBar.text = ""
         }
