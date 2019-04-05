@@ -197,9 +197,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="usedFilter:" destination="W4q-Yk-vsb" eventType="editingDidEnd" id="q4D-Bg-08o"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zZA-5Z-5Ip" customClass="DropDown" customModule="iOSDropDown">
                                 <rect key="frame" x="168" y="379" width="167" height="30"/>
@@ -207,9 +204,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="usedFilter:" destination="W4q-Yk-vsb" eventType="editingDidEnd" id="3jm-qF-pQh"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mmd-qd-aN1" customClass="DropDown" customModule="iOSDropDown">
                                 <rect key="frame" x="168" y="335" width="167" height="30"/>
@@ -217,9 +211,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="usedFilter:" destination="W4q-Yk-vsb" eventType="editingDidEnd" id="ab5-WA-SHG"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Ql-Ca-0Ap" customClass="DropDown" customModule="iOSDropDown">
                                 <rect key="frame" x="168" y="288" width="167" height="30"/>
@@ -227,9 +218,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="usedFilter:" destination="W4q-Yk-vsb" eventType="editingDidEnd" id="PTr-1l-8Xu"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mV7-EC-tdP" customClass="DropDown" customModule="iOSDropDown">
                                 <rect key="frame" x="168" y="241" width="167" height="30"/>
@@ -237,9 +225,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="usedFilter:" destination="W4q-Yk-vsb" eventType="editingDidEnd" id="WWc-zZ-8AP"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uen-wX-Hgc" customClass="DropDown" customModule="iOSDropDown">
                                 <rect key="frame" x="168" y="195" width="167" height="30"/>
@@ -247,9 +232,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="usedFilter:" destination="W4q-Yk-vsb" eventType="editingDidEnd" id="MXJ-DF-CsF"/>
-                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

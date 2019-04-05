@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class TableViewController: UITableViewController, UISearchBarDelegate, poblateFilterDropDowns {
+class TableViewController: UITableViewController, UISearchBarDelegate, FilterOptions {
     
     var db: Firestore!
     
@@ -97,8 +97,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate, poblateFi
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         //filtra cervezas por nombre o por estilo
-        filteredCervezas = cervezas.filter({ (text) -> Bool in
-            text.nombre.lowercased().contains(searchText.lowercased()) || text.estilo.lowercased().contains(searchText.lowercased())
+        filteredCervezas = cervezas.filter({ (cerveza) -> Bool in
+            cerveza.nombre.lowercased().contains(searchText.lowercased()) || cerveza.estilo.lowercased().contains(searchText.lowercased())
         })
         if searchText == "" {
             searchActive = false
@@ -222,7 +222,86 @@ class TableViewController: UITableViewController, UISearchBarDelegate, poblateFi
         tableView.reloadData()
     }
     
-    // MARK: - poblateFilterDropDowns protocol
+    // MARK: - FilterOptions protocol
+    func filter(estilo: String, cerveceria: String, origen: String, abvIndex: Int, ibuIndex: Int, srmIndex: Int) {
+        filteredCervezas = cervezas
+        if (estilo != "") {
+            filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
+                cerveza.estilo.lowercased().contains(estilo.lowercased())
+            })
+            print("FILTRA ESTILO")
+            print(filteredCervezas.count)
+        }
+        if (cerveceria != "") {
+            filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
+                cerveza.cerveceria.lowercased().contains(cerveceria.lowercased())
+            })
+            print("FILTRA CERVECERIA")
+            print(filteredCervezas.count)
+        }
+        if (origen != "") {
+            filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
+                cerveza.origen.lowercased().contains(origen.lowercased())
+            })
+            print("FILTRA ORIGEN")
+            print(filteredCervezas.count)
+        }
+        
+        if (abvIndex != 0) {
+            filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
+                var fABV = Float(-1)
+                if (cerveza.abv != "-") {
+                    fABV = Float(cerveza.abv)!
+                }
+                
+                if (abvIndex == 1) {
+                    return (fABV >= 0 && fABV <= 3.9)
+                } else if (abvIndex == 5) {
+                    return (fABV >= 10)
+                } else {
+                    let val = Float(abvIndex) * 2
+                    return (fABV >= val && fABV < val + 2)
+                }
+            })
+            print("FILTRA ABV")
+            print(filteredCervezas.count)
+        }
+        
+        if (ibuIndex != 0) {
+            filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
+                var fIBU = Float(-1)
+                if (cerveza.ibu != "-") {
+                    fIBU = Float(cerveza.ibu)!
+                }
+                if (ibuIndex == 6) {
+                    return (fIBU >= 100)
+                } else {
+                    let val = Float(ibuIndex) * 20
+                    return (fIBU >= val - 20 && fIBU < val)
+                }
+            })
+            print("FILTRA IBU")
+            print(filteredCervezas.count)
+        }
+        
+        if (srmIndex != 0) {
+            filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
+                var fSRM = Float(-1)
+                if (cerveza.srm != "-") {
+                    fSRM = Float(cerveza.srm)!
+                }
+                let val = Float(srmIndex) * 10
+                return (fSRM >= val - 10 && fSRM < val)
+            })
+            print("FILTRA SRM")
+            print(filteredCervezas.count)
+        }
+        
+        searchActive = true
+        self.tableView.reloadData()
+    }
+    
+    
     func getEstilos() -> Set<String> {
         var estilos = Set<String>()
         for cerveza in cervezas {
