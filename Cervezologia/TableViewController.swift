@@ -14,9 +14,12 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     var db: Firestore!
     
     @IBOutlet weak var searchBar: UISearchBar!
+    var btFavorites : UIBarButtonItem!
+    
     var searchActive: Bool = false
     var cervezas = [Cerveza]()
     var filteredCervezas = [Cerveza]()
+    var verFavoritos = false
     
     var alturaCelda = CGFloat(122)
 
@@ -32,6 +35,13 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
         //search bar delegate
         searchBar.delegate = self
+        
+        btFavorites = UIBarButtonItem(image: UIImage(named: "star-small"), style: .plain, target: self, action: #selector(btFavoritesTapped))
+        
+        self.navigationItem.leftItemsSupplementBackButton = true
+        self.navigationItem.leftBarButtonItem = btFavorites
+        
+        changeFavoriteButton()
         
         getBeers()
     }
@@ -81,8 +91,26 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             let fotoGenerica = UIImage(named: "cerveza")!
             return fotoGenerica
         }
+    }
+    
+    func changeFavoriteButton() {
+        
+        if verFavoritos {
+            btFavorites.image = UIImage(named: "starFilled-small")
+            verFavoritos = !verFavoritos
+        } else {
+            btFavorites.image = UIImage(named: "star-small")
+            verFavoritos = !verFavoritos
+        }
+    }
+    
+    @objc func btFavoritesTapped(sender: UIBarButtonItem) {
+        changeFavoriteButton()
         
     }
+    
+    
+    
     //MARK: - Search bar functions
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchActive = true;
