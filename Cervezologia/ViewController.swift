@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var imgFoto: UIImageView!
     @IBOutlet weak var btFavorito: UIButton!
     
+    var cervezaActual : Cerveza!
+    
     
     var nombre : String = ""
     var estilo : String = ""
@@ -28,12 +30,14 @@ class ViewController: UIViewController {
     var abv : String = ""
     var ibu : String = ""
     var srm : String = ""
+    var fotourl : String = ""
     var foto : UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        cervezaActual = Cerveza(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, fotoURL: fotourl)
+        
         lbNombre.text = nombre
         lbEstilo.text = estilo
         lbCerveceria.text = cerveceria
@@ -45,10 +49,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btListaDeInteres(_ sender: UIButton) {
+        let count = (self.navigationController?.viewControllers.count)!
+        let tableViewCtrl = self.navigationController?.viewControllers[count - 2] as! TableViewController
+        
         if sender.image(for: .normal) == UIImage(named: "star") {
             sender.setImage(UIImage(named: "starFilled"), for: .normal)
+            tableViewCtrl.favoriteCervezas.append(cervezaActual)
+            tableViewCtrl.storeFavorites()
         } else {
             sender.setImage(UIImage(named: "star"), for: .normal)
+            tableViewCtrl.favoriteCervezas = tableViewCtrl.favoriteCervezas.filter { $0.nombre != cervezaActual.nombre }
+            tableViewCtrl.storeFavorites()
         }
     }
     
