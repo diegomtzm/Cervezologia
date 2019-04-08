@@ -33,6 +33,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
                        "abv": ["", 0],
                        "ibu": ["", 0],
                        "srm": ["", 0]]
+
     
     let alturaCelda = CGFloat(122)
 
@@ -267,54 +268,30 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        let vista = segue.destination as! ViewController
-        let indexPath = tableView.indexPathForSelectedRow!
-        var actualList = [Cerveza]()
-        if verFavoritos {
-            actualList = favoriteCervezas
-        } else if searchActive {
-            actualList = filteredCervezas
-        } else {
-            actualList = cervezas
-        }
-        
-        vista.nombre = actualList[indexPath.row].nombre
-        vista.estilo = actualList[indexPath.row].estilo
-        vista.cerveceria = actualList[indexPath.row].cerveceria
-        vista.origen = actualList[indexPath.row].origen
-        vista.abv = actualList[indexPath.row].abv
-        vista.ibu = actualList[indexPath.row].ibu
-        vista.srm = actualList[indexPath.row].srm
-        vista.fotourl = actualList[indexPath.row].fotoURL
-        let foto = photoFromURL(urlString: actualList[indexPath.row].fotoURL)
-        vista.foto = foto
-        vista.isFavorite = actualList[indexPath.row].isFavorite
+
         if segue.identifier == "BeerDetail" {
             let vista = segue.destination as! BeerDetailViewController
-            
             let indexPath = tableView.indexPathForSelectedRow!
-            if searchActive {
-                vista.nombre = filteredCervezas[indexPath.row].nombre
-                vista.estilo = filteredCervezas[indexPath.row].estilo
-                vista.cerveceria = filteredCervezas[indexPath.row].cerveceria
-                vista.origen = filteredCervezas[indexPath.row].origen
-                vista.abv = filteredCervezas[indexPath.row].abv
-                vista.ibu = filteredCervezas[indexPath.row].ibu
-                vista.srm = filteredCervezas[indexPath.row].srm
-                let foto = photoFromURL(urlString: filteredCervezas[indexPath.row].fotoURL)
-                vista.foto = foto
+            var actualList = [Cerveza]()
+            if verFavoritos {
+                actualList = favoriteCervezas
+            } else if searchActive {
+                actualList = filteredCervezas
             } else {
-                vista.nombre = cervezas[indexPath.row].nombre
-                vista.estilo = cervezas[indexPath.row].estilo
-                vista.cerveceria = cervezas[indexPath.row].cerveceria
-                vista.origen = cervezas[indexPath.row].origen
-                vista.abv = cervezas[indexPath.row].abv
-                vista.ibu = cervezas[indexPath.row].ibu
-                vista.srm = cervezas[indexPath.row].srm
-                let foto = photoFromURL(urlString: cervezas[indexPath.row].fotoURL)
-                vista.foto = foto
+                actualList = cervezas
             }
-        
+            
+            vista.nombre = actualList[indexPath.row].nombre
+            vista.estilo = actualList[indexPath.row].estilo
+            vista.cerveceria = actualList[indexPath.row].cerveceria
+            vista.origen = actualList[indexPath.row].origen
+            vista.abv = actualList[indexPath.row].abv
+            vista.ibu = actualList[indexPath.row].ibu
+            vista.srm = actualList[indexPath.row].srm
+            vista.fotourl = actualList[indexPath.row].fotoURL
+            let foto = photoFromURL(urlString: actualList[indexPath.row].fotoURL)
+            vista.foto = foto
+            vista.isFavorite = actualList[indexPath.row].isFavorite
         } else {
             let vista = segue.destination as! FilterViewController
             vista.delegado = self
@@ -333,22 +310,16 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
             filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
                 cerveza.estilo.lowercased().elementsEqual(estilo.lowercased())
             })
-            print("FILTRA ESTILO")
-            print(filteredCervezas.count)
         }
         if (cerveceria != "") {
             filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
                 cerveza.cerveceria.lowercased().elementsEqual(cerveceria.lowercased())
             })
-            print("FILTRA CERVECERIA")
-            print(filteredCervezas.count)
         }
         if (origen != "") {
             filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
                 cerveza.origen.lowercased().elementsEqual(origen.lowercased())
             })
-            print("FILTRA ORIGEN")
-            print(filteredCervezas.count)
         }
         
         if (abvIndex != 0) {
@@ -367,8 +338,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
                     return (fABV >= val && fABV < val + 2)
                 }
             })
-            print("FILTRA ABV")
-            print(filteredCervezas.count)
         }
         
         if (ibuIndex != 0) {
@@ -384,8 +353,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
                     return (fIBU >= val - 20 && fIBU < val)
                 }
             })
-            print("FILTRA IBU")
-            print(filteredCervezas.count)
         }
         
         if (srmIndex != 0) {
@@ -397,8 +364,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
                 let val = Float(srmIndex) * 10
                 return (fSRM >= val - 10 && fSRM < val)
             })
-            print("FILTRA SRM")
-            print(filteredCervezas.count)
         }
         
         searchActive = true
