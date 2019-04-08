@@ -1,13 +1,13 @@
 # Cerveceria - App
-iOS app for Cerveceria.
+Instagram: @cervezologiamx
 
-## Table of Contents
-* [General info](#general-info)
-* [Technologies](#technologies)
+## Tabla de Contenidos
+* [Proposito del sistema](#proposito-del-sistema)
+* [Tecnologias](#tecnologias)
 
-## General info
-Final project for our mobile development class.
+## Proposito del sistema
+Proveer de herramientas a la comunidad cervecera para que puedan conocer e interactuar más con el mercado de cerveza artesanal mexicano.
 
-## Technologies
+## Tecnologias
 Project is created with:
 * Swift 4.0
