@@ -52,7 +52,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
         getBeers()
     }
-    
+
     //get cervezas from database
     func getBeers() {
         db.collection("Cervezas").getDocuments() { (querySnapshot, err) in
@@ -171,6 +171,15 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         favoriteCervezas.removeAll()
         let tmp = retrieveFavorites()
         favoriteCervezas = tmp!
+        for favorita in favoriteCervezas {
+            favorita.isFavorite = true
+            if let index = cervezas.firstIndex(where: { (cerveza) -> Bool in
+                cerveza.nombre == favorita.nombre
+            }) {
+                cervezas[index].isFavorite = true
+            }
+            
+        }
     }
 
     // MARK: - Table view data source
@@ -278,5 +287,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         vista.fotourl = actualList[indexPath.row].fotoURL
         let foto = photoFromURL(urlString: actualList[indexPath.row].fotoURL)
         vista.foto = foto
+        vista.isFavorite = actualList[indexPath.row].isFavorite
     }
 }

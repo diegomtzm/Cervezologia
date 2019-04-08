@@ -21,6 +21,7 @@ class Cerveza : Codable {
     var ibu : String = ""
     var srm : String = ""
     var fotoURL : String = ""
+    var isFavorite : Bool = false
     
     init(nombre : String, estilo : String, cerveceria : String, origen : String, abv : String, ibu : String, srm : String, fotoURL : String) {
         self.nombre = nombre
@@ -42,6 +43,7 @@ class Cerveza : Codable {
         case ibu
         case srm
         case fotoURL
+        case isFavorite
     }
     
     func encode(to encoder: Encoder) throws {
@@ -54,6 +56,7 @@ class Cerveza : Codable {
         try container.encode(ibu, forKey: .ibu)
         try container.encode(srm, forKey: .srm)
         try container.encode(fotoURL, forKey: .fotoURL)
+        try container.encode(isFavorite, forKey: .isFavorite)
     }
     
     required init(from decoder: Decoder) throws {
@@ -66,6 +69,7 @@ class Cerveza : Codable {
         ibu = try container.decode(String.self, forKey: .ibu)
         srm = try container.decode(String.self, forKey: .srm)
         fotoURL = try container.decode(String.self, forKey: .fotoURL)
+        isFavorite = try container.decode(Bool.self, forKey: .isFavorite)
     }
 }
 
