@@ -14,7 +14,12 @@ class CerveceriaMarkerView: MKMarkerAnnotationView {
             guard let ceveceria = newValue as? Cerveceria else { return }
             canShowCallout = true
             calloutOffset = CGPoint(x: -5, y: 5)
-            rightCalloutAccessoryView = UIButton(type: .infoLight)
+            
+            let mapsButton = UIButton(frame: CGRect(origin: CGPoint.zero,
+                                                    size: CGSize(width: 30, height: 30)))
+            mapsButton.setBackgroundImage(UIImage(named: "maps-icon"), for: UIControl.State())
+            rightCalloutAccessoryView = mapsButton
+
             
             markerTintColor = ceveceria.markerTintColor
             glyphText = String(ceveceria.type.first!)
