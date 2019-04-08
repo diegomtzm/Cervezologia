@@ -26,3 +26,41 @@ class CerveceriaMarkerView: MKMarkerAnnotationView {
         }
     }
 }
+
+class CerveceriaView: MKAnnotationView {
+    override var annotation: MKAnnotation? {
+        willSet {
+            guard let cerveceria = newValue as? Cerveceria else {return}
+            canShowCallout = true
+            calloutOffset = CGPoint(x: -5, y: 5)
+            let mapsButton = UIButton(frame: CGRect(origin: CGPoint.zero,
+                                                    size: CGSize(width: 30, height: 30)))
+            mapsButton.setBackgroundImage(UIImage(named: "maps-icon"), for: UIControl.State())
+            rightCalloutAccessoryView = mapsButton
+
+            /*
+            let label1 = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+            label1.numberOfLines = 0
+            label1.font = label1.font.withSize(12)
+            label1.text = cerveceria.subtitle
+            detailCalloutAccessoryView = label1;
+            
+            let width = NSLayoutConstraint(item: label1, attribute: nsla, relatedBy: <#T##NSLayoutConstraint.Relation#>, toItem: <#T##Any?#>, attribute: <#T##NSLayoutConstraint.Attribute#>, multiplier: <#T##CGFloat#>, constant: <#T##CGFloat#>)
+            label1.addConstraint(width)
+           // label1.addConstraint(width)
+            
+            
+            //let height =
+            //label1.addConstraint(height)
+            */
+            
+            let detailLabel = UILabel()
+            detailLabel.numberOfLines = 0
+            detailLabel.font = detailLabel.font.withSize(12)
+            detailLabel.text = cerveceria.subtitle
+            detailCalloutAccessoryView = detailLabel
+
+        }
+    }
+}
+
