@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class TableViewController: UITableViewController, UISearchBarDelegate {
+class TableViewController: UITableViewController, UISearchBarDelegate, FilterOptions {
     
     var db: Firestore!
     
@@ -27,8 +27,14 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     var filteredCervezas = [Cerveza]()
     var favoriteCervezas = [Cerveza]()
     var verFavoritos = false
+    var usedFilters = ["estilo": ["", 0],
+                       "cerveceria": ["", 0],
+                       "origen": ["", 0],
+                       "abv": ["", 0],
+                       "ibu": ["", 0],
+                       "srm": ["", 0]]
     
-    var alturaCelda = CGFloat(122)
+    let alturaCelda = CGFloat(122)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +65,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-//          debug getting collections correctly
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//                }
                 for document in querySnapshot!.documents {
                     let data = document.data()
                     let nombre = data["Nombre"] as! String
@@ -134,13 +136,13 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         //filtra cervezas por nombre o por estilo
-        filteredCervezas = cervezas.filter({ (text) -> Bool in
-            text.nombre.lowercased().contains(searchText.lowercased()) || text.estilo.lowercased().contains(searchText.lowercased())
+        filteredCervezas = cervezas.filter({ (cerveza) -> Bool in
+            cerveza.nombre.lowercased().contains(searchText.lowercased()) || cerveza.estilo.lowercased().contains(searchText.lowercased())
         })
-        if(filteredCervezas.count == 0){
-            searchActive = false;
+        if searchText == "" {
+            searchActive = false
         } else {
-            searchActive = true;
+            searchActive = true
         }
         self.tableView.reloadData()
     }
@@ -221,7 +223,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             cell.imgFoto.image = foto
         }
         
-        
         return cell
     }
     
@@ -288,5 +289,151 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         let foto = photoFromURL(urlString: actualList[indexPath.row].fotoURL)
         vista.foto = foto
         vista.isFavorite = actualList[indexPath.row].isFavorite
+        if segue.identifier == "BeerDetail" {
+            let vista = segue.destination as! BeerDetailViewController
+            
+            let indexPath = tableView.indexPathForSelectedRow!
+            if searchActive {
+                vista.nombre = filteredCervezas[indexPath.row].nombre
+                vista.estilo = filteredCervezas[indexPath.row].estilo
+                vista.cerveceria = filteredCervezas[indexPath.row].cerveceria
+                vista.origen = filteredCervezas[indexPath.row].origen
+                vista.abv = filteredCervezas[indexPath.row].abv
+                vista.ibu = filteredCervezas[indexPath.row].ibu
+                vista.srm = filteredCervezas[indexPath.row].srm
+                let foto = photoFromURL(urlString: filteredCervezas[indexPath.row].fotoURL)
+                vista.foto = foto
+            } else {
+                vista.nombre = cervezas[indexPath.row].nombre
+                vista.estilo = cervezas[indexPath.row].estilo
+                vista.cerveceria = cervezas[indexPath.row].cerveceria
+                vista.origen = cervezas[indexPath.row].origen
+                vista.abv = cervezas[indexPath.row].abv
+                vista.ibu = cervezas[indexPath.row].ibu
+                vista.srm = cervezas[indexPath.row].srm
+                let foto = photoFromURL(urlString: cervezas[indexPath.row].fotoURL)
+                vista.foto = foto
+            }
+        
+        } else {
+            let vista = segue.destination as! FilterViewController
+            vista.delegado = self
+            searchActive = true
+        }
+    }
+    
+    @IBAction func unwindFilter(unwindSegue: UIStoryboardSegue) {
+        tableView.reloadData()
+    }
+    
+    // MARK: - FilterOptions protocol
+    func filter(estilo: String, cerveceria: String, origen: String, abvIndex: Int, ibuIndex: Int, srmIndex: Int) {
+        filteredCervezas = cervezas
+        if (estilo != "") {
+            filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
+                cerveza.estilo.lowercased().elementsEqual(estilo.lowercased())
+            })
+            print("FILTRA ESTILO")
+            print(filteredCervezas.count)
+        }
+        if (cerveceria != "") {
+            filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
+                cerveza.cerveceria.lowercased().elementsEqual(cerveceria.lowercased())
+            })
+            print("FILTRA CERVECERIA")
+            print(filteredCervezas.count)
+        }
+        if (origen != "") {
+            filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
+                cerveza.origen.lowercased().elementsEqual(origen.lowercased())
+            })
+            print("FILTRA ORIGEN")
+            print(filteredCervezas.count)
+        }
+        
+        if (abvIndex != 0) {
+            filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
+                var fABV = Float(-1)
+                if (cerveza.abv != "-") {
+                    fABV = Float(cerveza.abv)!
+                }
+                
+                if (abvIndex == 1) {
+                    return (fABV >= 0 && fABV <= 3.9)
+                } else if (abvIndex == 5) {
+                    return (fABV >= 10)
+                } else {
+                    let val = Float(abvIndex) * 2
+                    return (fABV >= val && fABV < val + 2)
+                }
+            })
+            print("FILTRA ABV")
+            print(filteredCervezas.count)
+        }
+        
+        if (ibuIndex != 0) {
+            filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
+                var fIBU = Float(-1)
+                if (cerveza.ibu != "-") {
+                    fIBU = Float(cerveza.ibu)!
+                }
+                if (ibuIndex == 6) {
+                    return (fIBU >= 100)
+                } else {
+                    let val = Float(ibuIndex) * 20
+                    return (fIBU >= val - 20 && fIBU < val)
+                }
+            })
+            print("FILTRA IBU")
+            print(filteredCervezas.count)
+        }
+        
+        if (srmIndex != 0) {
+            filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
+                var fSRM = Float(-1)
+                if (cerveza.srm != "-") {
+                    fSRM = Float(cerveza.srm)!
+                }
+                let val = Float(srmIndex) * 10
+                return (fSRM >= val - 10 && fSRM < val)
+            })
+            print("FILTRA SRM")
+            print(filteredCervezas.count)
+        }
+        
+        searchActive = true
+        self.tableView.reloadData()
+    }
+    
+    func setUsedFilters(key: String, values: [Any]) {
+        usedFilters[key] = values
+    }
+    
+    func getUsedFilters() -> [String : [Any]] {
+        return usedFilters
+    }
+    
+    func getEstilos() -> Set<String> {
+        var estilos = Set<String>()
+        for cerveza in cervezas {
+            estilos.insert(cerveza.estilo)
+        }
+        return estilos
+    }
+    
+    func getCervecerias() -> Set<String> {
+        var cervecerias = Set<String>()
+        for cerveza in cervezas {
+            cervecerias.insert(cerveza.cerveceria)
+        }
+        return cervecerias
+    }
+    
+    func getOrigenes() -> Set<String> {
+        var origenes = Set<String>()
+        for cerveza in cervezas {
+            origenes.insert(cerveza.origen)
+        }
+        return origenes
     }
 }

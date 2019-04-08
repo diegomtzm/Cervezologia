@@ -11,7 +11,7 @@
 		81BFA0282248C3DC00B2DDBE /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA0232248C3DC00B2DDBE /* FirstViewController.swift */; };
 		81BFA0292248C3DC00B2DDBE /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA0242248C3DC00B2DDBE /* CustomTableViewCell.swift */; };
 		81BFA02A2248C3DC00B2DDBE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA0252248C3DC00B2DDBE /* TableViewController.swift */; };
-		81BFA02B2248C3DC00B2DDBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA0262248C3DC00B2DDBE /* ViewController.swift */; };
+		81BFA02B2248C3DC00B2DDBE /* BeerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA0262248C3DC00B2DDBE /* BeerDetailViewController.swift */; };
 		8EA451ED333B29C5A7BD9387 /* Pods_Cervezologia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3378A857F23AC2365EB1553C /* Pods_Cervezologia.framework */; };
 		CF7DA4442249838200D98423 /* Cerveceria.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7DA4432249838200D98423 /* Cerveceria.swift */; };
 		D4280C932243F66C006CCF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C922243F66C006CCF30 /* AppDelegate.swift */; };
@@ -19,6 +19,8 @@
 		D4280C9C2243F66C006CCF30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4280C9B2243F66C006CCF30 /* Assets.xcassets */; };
 		D4280C9F2243F66C006CCF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4280C9D2243F66C006CCF30 /* LaunchScreen.storyboard */; };
 		D4280CA72243FCC8006CCF30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4280CA62243FCC8006CCF30 /* GoogleService-Info.plist */; };
+		D4EA5AE22250714800174176 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA5AE12250714800174176 /* FilterViewController.swift */; };
+		D4EA5AE42250761F00174176 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4EA5AE32250761F00174176 /* iOSDropDown.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +29,7 @@
 		81BFA0232248C3DC00B2DDBE /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		81BFA0242248C3DC00B2DDBE /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		81BFA0252248C3DC00B2DDBE /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		81BFA0262248C3DC00B2DDBE /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		81BFA0262248C3DC00B2DDBE /* BeerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerDetailViewController.swift; sourceTree = "<group>"; };
 		9205DAB941DB1141357AC199 /* Pods-Cervezologia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cervezologia.debug.xcconfig"; path = "Target Support Files/Pods-Cervezologia/Pods-Cervezologia.debug.xcconfig"; sourceTree = "<group>"; };
 		9DBBBAC4368B6D80F1587ED6 /* Pods-Cervezologia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cervezologia.release.xcconfig"; path = "Target Support Files/Pods-Cervezologia/Pods-Cervezologia.release.xcconfig"; sourceTree = "<group>"; };
 		CF7DA4432249838200D98423 /* Cerveceria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cerveceria.swift; sourceTree = "<group>"; };
@@ -38,6 +40,8 @@
 		D4280C9E2243F66C006CCF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4280CA02243F66C006CCF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4280CA62243FCC8006CCF30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D4EA5AE12250714800174176 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		D4EA5AE32250761F00174176 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4EA5AE42250761F00174176 /* iOSDropDown.framework in Frameworks */,
 				8EA451ED333B29C5A7BD9387 /* Pods_Cervezologia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,6 +60,7 @@
 		1DDFB363A4CEC0C5DA770696 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4EA5AE32250761F00174176 /* iOSDropDown.framework */,
 				3378A857F23AC2365EB1553C /* Pods_Cervezologia.framework */,
 			);
 			name = Frameworks;
@@ -94,7 +100,8 @@
 				81BFA0242248C3DC00B2DDBE /* CustomTableViewCell.swift */,
 				81BFA0232248C3DC00B2DDBE /* FirstViewController.swift */,
 				81BFA0252248C3DC00B2DDBE /* TableViewController.swift */,
-				81BFA0262248C3DC00B2DDBE /* ViewController.swift */,
+				81BFA0262248C3DC00B2DDBE /* BeerDetailViewController.swift */,
+				D4EA5AE12250714800174176 /* FilterViewController.swift */,
 				D4280C922243F66C006CCF30 /* AppDelegate.swift */,
 				D4280C982243F66C006CCF30 /* Main.storyboard */,
 				CF7DA4432249838200D98423 /* Cerveceria.swift */,
@@ -212,6 +219,7 @@
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -224,6 +232,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -239,8 +248,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81BFA02B2248C3DC00B2DDBE /* ViewController.swift in Sources */,
+				81BFA02B2248C3DC00B2DDBE /* BeerDetailViewController.swift in Sources */,
 				CF7DA4442249838200D98423 /* Cerveceria.swift in Sources */,
+				D4EA5AE22250714800174176 /* FilterViewController.swift in Sources */,
 				81BFA0282248C3DC00B2DDBE /* FirstViewController.swift in Sources */,
 				81BFA0272248C3DC00B2DDBE /* Cerveza.swift in Sources */,
 				81BFA0292248C3DC00B2DDBE /* CustomTableViewCell.swift in Sources */,
@@ -393,6 +403,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QPW45M8GDZ;
 				INFOPLIST_FILE = Cervezologia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -411,6 +422,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QPW45M8GDZ;
 				INFOPLIST_FILE = Cervezologia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

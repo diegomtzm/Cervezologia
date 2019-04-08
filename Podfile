@@ -9,5 +9,6 @@ target 'Cervezologia' do
 
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
+  pod 'iOSDropDown'
 
 end

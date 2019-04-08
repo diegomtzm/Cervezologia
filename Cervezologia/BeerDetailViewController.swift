@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BeerDetailViewController: UIViewController {
     
     @IBOutlet weak var lbNombre: UILabel!
     @IBOutlet weak var lbEstilo: UILabel!
