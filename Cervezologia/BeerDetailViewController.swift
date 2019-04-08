@@ -19,6 +19,8 @@ class BeerDetailViewController: UIViewController {
     @IBOutlet weak var lbSrm: UILabel!
     @IBOutlet weak var imgFoto: UIImageView!
     @IBOutlet weak var btFavorito: UIButton!
+    @IBOutlet weak var vista: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var cervezaActual : Cerveza!
     
@@ -38,6 +40,8 @@ class BeerDetailViewController: UIViewController {
 
         cervezaActual = Cerveza(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, fotoURL: fotourl)
         
+        scrollView.contentSize = vista.frame.size
+        
         lbNombre.text = nombre
         lbEstilo.text = estilo
         lbCerveceria.text = cerveceria
@@ -48,9 +52,11 @@ class BeerDetailViewController: UIViewController {
         imgFoto.image = foto
         
         if isFavorite {
-            btFavorito.setImage(UIImage(named: "starFilled"), for: .normal)
+            
+            UIView.animate(withDuration: 0.25) { self.btFavorito.setImage(UIImage(named: "starFilled"), for: .normal) }
         } else {
-            btFavorito.setImage(UIImage(named: "star"), for: .normal)
+            UIView.animate(withDuration: 0.25) { self.btFavorito.setImage(UIImage(named: "star"), for: .normal) }
+            
         }        
     }
     

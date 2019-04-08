@@ -39,6 +39,8 @@ class FilterViewController: UIViewController {
         super.viewDidLoad()
 
         initDropDowns()
+        btAplicar.layer.cornerRadius = 4
+        btCancelar.layer.cornerRadius = 4
         
         ddEstilo.didSelect { (text, index, id) in
             self.delegado.setUsedFilters(key: "estilo", values: [text, index])
