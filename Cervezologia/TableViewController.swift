@@ -14,9 +14,19 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     var db: Firestore!
     
     @IBOutlet weak var searchBar: UISearchBar!
+    var btFavorites : UIBarButtonItem!
+    
+    //QUE APAREZCA EL FAVORITO YA MARCADO CUANDO YA ESTA EN LA LISTA DE FAVORITOS
+    //agregar isFavorite a Cerveza
+    //inicializar todas en false
+    //modificar el isFavorite a todas las de favoriteCervezas
+    //igualar cervezas con isFavorite(las que coinciden)
+    
     var searchActive: Bool = false
     var cervezas = [Cerveza]()
     var filteredCervezas = [Cerveza]()
+    var favoriteCervezas = [Cerveza]()
+    var verFavoritos = false
     
     var alturaCelda = CGFloat(122)
 
@@ -33,9 +43,16 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         //search bar delegate
         searchBar.delegate = self
         
+        btFavorites = UIBarButtonItem(image: UIImage(named: "star-small"), style: .plain, target: self, action: #selector(btFavoritesTapped))
+        
+        self.navigationItem.leftItemsSupplementBackButton = true
+        self.navigationItem.leftBarButtonItem = btFavorites
+        
+        obtenerListaFavoritos()
+        
         getBeers()
     }
-    
+
     //get cervezas from database
     func getBeers() {
         db.collection("Cervezas").getDocuments() { (querySnapshot, err) in
@@ -59,7 +76,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
 
                     let cerveza = Cerveza(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, fotoURL: fotoURL)
                     self.cervezas.append(cerveza)
-                    print(cerveza.nombre)
                 }
                 self.tableView.reloadData()
             }
@@ -81,8 +97,24 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             let fotoGenerica = UIImage(named: "cerveza")!
             return fotoGenerica
         }
-        
     }
+    
+    func changeFavoriteButton() {
+        if verFavoritos {
+            btFavorites.image = UIImage(named: "star-small")
+            verFavoritos = !verFavoritos
+            tableView.reloadData()
+        } else {
+            btFavorites.image = UIImage(named: "starFilled-small")
+            verFavoritos = !verFavoritos
+            tableView.reloadData()
+        }
+    }
+    
+    @objc func btFavoritesTapped(sender: UIBarButtonItem) {
+        changeFavoriteButton()
+    }
+    
     //MARK: - Search bar functions
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchActive = true;
@@ -113,7 +145,42 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         self.tableView.reloadData()
     }
     
+    //MARK - Codable persistence
+    func storeFavorites() {
+        do {
+            print(Cerveza.archiveURL.path)
+            let data = try PropertyListEncoder().encode(favoriteCervezas)
+            try data.write(to: Cerveza.archiveURL)
+        } catch {
+            print("Save Failed")
+        }
+    }
     
+    func retrieveFavorites() -> [Cerveza]? {
+        do {
+            let data = try Data(contentsOf: Cerveza.archiveURL)
+            let fvts = try PropertyListDecoder().decode([Cerveza].self, from: data)
+            return fvts
+        } catch {
+            print("Error reading or decoding file")
+            return [Cerveza]()
+        }
+    }
+    
+    func obtenerListaFavoritos() {
+        favoriteCervezas.removeAll()
+        let tmp = retrieveFavorites()
+        favoriteCervezas = tmp!
+        for favorita in favoriteCervezas {
+            favorita.isFavorite = true
+            if let index = cervezas.firstIndex(where: { (cerveza) -> Bool in
+                cerveza.nombre == favorita.nombre
+            }) {
+                cervezas[index].isFavorite = true
+            }
+            
+        }
+    }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -121,9 +188,10 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         return 1
     }
     
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchActive {
+        if verFavoritos {
+            return favoriteCervezas.count
+        } else if searchActive {
             return filteredCervezas.count
         } else {
             return cervezas.count
@@ -136,7 +204,12 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "idCell", for: indexPath) as! CustomTableViewCell
-        if searchActive {
+        if verFavoritos {
+            cell.lbNombre.text = favoriteCervezas[indexPath.row].nombre
+            cell.lbEstilo.text = favoriteCervezas[indexPath.row].estilo
+            let foto = photoFromURL(urlString: favoriteCervezas[indexPath.row].fotoURL)
+            cell.imgFoto.image = foto
+        } else if searchActive {
             cell.lbNombre.text = filteredCervezas[indexPath.row].nombre
             cell.lbEstilo.text = filteredCervezas[indexPath.row].estilo
             let foto = photoFromURL(urlString: filteredCervezas[indexPath.row].fotoURL)
@@ -195,16 +268,25 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         // Pass the selected object to the new view controller.
         let vista = segue.destination as! ViewController
         let indexPath = tableView.indexPathForSelectedRow!
-        vista.nombre = cervezas[indexPath.row].nombre
-        vista.estilo = cervezas[indexPath.row].estilo
-        vista.cerveceria = cervezas[indexPath.row].cerveceria
-        vista.origen = cervezas[indexPath.row].origen
-        vista.abv = cervezas[indexPath.row].abv
-        vista.ibu = cervezas[indexPath.row].ibu
-        vista.srm = cervezas[indexPath.row].srm
-        let foto = photoFromURL(urlString: cervezas[indexPath.row].fotoURL)
-        vista.foto = foto
+        var actualList = [Cerveza]()
+        if verFavoritos {
+            actualList = favoriteCervezas
+        } else if searchActive {
+            actualList = filteredCervezas
+        } else {
+            actualList = cervezas
+        }
         
+        vista.nombre = actualList[indexPath.row].nombre
+        vista.estilo = actualList[indexPath.row].estilo
+        vista.cerveceria = actualList[indexPath.row].cerveceria
+        vista.origen = actualList[indexPath.row].origen
+        vista.abv = actualList[indexPath.row].abv
+        vista.ibu = actualList[indexPath.row].ibu
+        vista.srm = actualList[indexPath.row].srm
+        vista.fotourl = actualList[indexPath.row].fotoURL
+        let foto = photoFromURL(urlString: actualList[indexPath.row].fotoURL)
+        vista.foto = foto
+        vista.isFavorite = actualList[indexPath.row].isFavorite
     }
-
 }

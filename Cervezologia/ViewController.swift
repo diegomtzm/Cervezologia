@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var imgFoto: UIImageView!
     @IBOutlet weak var btFavorito: UIButton!
     
+    var cervezaActual : Cerveza!
     
     var nombre : String = ""
     var estilo : String = ""
@@ -28,12 +29,15 @@ class ViewController: UIViewController {
     var abv : String = ""
     var ibu : String = ""
     var srm : String = ""
+    var fotourl : String = ""
     var foto : UIImage?
+    var isFavorite : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        cervezaActual = Cerveza(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, fotoURL: fotourl)
+        
         lbNombre.text = nombre
         lbEstilo.text = estilo
         lbCerveceria.text = cerveceria
@@ -42,13 +46,39 @@ class ViewController: UIViewController {
         lbIbu.text = ibu
         lbSrm.text = srm
         imgFoto.image = foto
+        
+        if isFavorite {
+            btFavorito.setImage(UIImage(named: "starFilled"), for: .normal)
+        } else {
+            btFavorito.setImage(UIImage(named: "star"), for: .normal)
+        }        
     }
     
     @IBAction func btListaDeInteres(_ sender: UIButton) {
+        let count = (self.navigationController?.viewControllers.count)!
+        let tableViewCtrl = self.navigationController?.viewControllers[count - 2] as! TableViewController
+        
+        let index = tableViewCtrl.cervezas.firstIndex { (cerveza) -> Bool in
+            cerveza.nombre == cervezaActual.nombre
+        }
+        
         if sender.image(for: .normal) == UIImage(named: "star") {
             sender.setImage(UIImage(named: "starFilled"), for: .normal)
+            cervezaActual.isFavorite = true
+            tableViewCtrl.favoriteCervezas.append(cervezaActual)
+            tableViewCtrl.cervezas[index!].isFavorite = true
+            tableViewCtrl.storeFavorites()
         } else {
             sender.setImage(UIImage(named: "star"), for: .normal)
+            tableViewCtrl.favoriteCervezas = tableViewCtrl.favoriteCervezas.filter({ (cerveza) -> Bool in
+                cerveza.nombre != cervezaActual.nombre
+            })
+            tableViewCtrl.cervezas[index!].isFavorite = false
+            tableViewCtrl.tableView.reloadData()
+            if tableViewCtrl.favoriteCervezas.count > 0 {
+                tableViewCtrl.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            }
+            tableViewCtrl.storeFavorites()
         }
     }
     
