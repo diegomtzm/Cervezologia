@@ -250,6 +250,12 @@
                     <connections>
                         <outlet property="btAplicar" destination="V1y-uY-WDr" id="2Zd-qb-xfE"/>
                         <outlet property="btCancelar" destination="7Wd-E4-z39" id="o1v-d2-efI"/>
+                        <outlet property="ddABV" destination="mmd-qd-aN1" id="P20-1O-Tgd"/>
+                        <outlet property="ddCerveceria" destination="mV7-EC-tdP" id="jYL-3C-TE3"/>
+                        <outlet property="ddEstilo" destination="uen-wX-Hgc" id="unZ-qg-l1c"/>
+                        <outlet property="ddIBU" destination="zZA-5Z-5Ip" id="5rJ-um-X86"/>
+                        <outlet property="ddOrigen" destination="8Ql-Ca-0Ap" id="2ea-VK-RR8"/>
+                        <outlet property="ddSRM" destination="4v2-an-MUN" id="EJQ-hx-bfp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBE-rh-mYH" userLabel="First Responder" sceneMemberID="firstResponder"/>
