@@ -14,6 +14,7 @@
 		81BFA02B2248C3DC00B2DDBE /* BeerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA0262248C3DC00B2DDBE /* BeerDetailViewController.swift */; };
 		8EA451ED333B29C5A7BD9387 /* Pods_Cervezologia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3378A857F23AC2365EB1553C /* Pods_Cervezologia.framework */; };
 		CF7DA4442249838200D98423 /* Cerveceria.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7DA4432249838200D98423 /* Cerveceria.swift */; };
+		CFC36E70225B3836002EC7A1 /* CerveceriaViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC36E6F225B3836002EC7A1 /* CerveceriaViews.swift */; };
 		D4280C932243F66C006CCF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4280C922243F66C006CCF30 /* AppDelegate.swift */; };
 		D4280C9A2243F66C006CCF30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4280C982243F66C006CCF30 /* Main.storyboard */; };
 		D4280C9C2243F66C006CCF30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4280C9B2243F66C006CCF30 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		9205DAB941DB1141357AC199 /* Pods-Cervezologia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cervezologia.debug.xcconfig"; path = "Target Support Files/Pods-Cervezologia/Pods-Cervezologia.debug.xcconfig"; sourceTree = "<group>"; };
 		9DBBBAC4368B6D80F1587ED6 /* Pods-Cervezologia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cervezologia.release.xcconfig"; path = "Target Support Files/Pods-Cervezologia/Pods-Cervezologia.release.xcconfig"; sourceTree = "<group>"; };
 		CF7DA4432249838200D98423 /* Cerveceria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cerveceria.swift; sourceTree = "<group>"; };
+		CFC36E6F225B3836002EC7A1 /* CerveceriaViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CerveceriaViews.swift; sourceTree = "<group>"; };
 		D4280C8F2243F66C006CCF30 /* Cervezologia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cervezologia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4280C922243F66C006CCF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4280C992243F66C006CCF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				D4280C922243F66C006CCF30 /* AppDelegate.swift */,
 				D4280C982243F66C006CCF30 /* Main.storyboard */,
 				CF7DA4432249838200D98423 /* Cerveceria.swift */,
+				CFC36E6F225B3836002EC7A1 /* CerveceriaViews.swift */,
 				D4280C9B2243F66C006CCF30 /* Assets.xcassets */,
 				D4280C9D2243F66C006CCF30 /* LaunchScreen.storyboard */,
 				D4280CA02243F66C006CCF30 /* Info.plist */,
@@ -251,6 +254,7 @@
 				81BFA02B2248C3DC00B2DDBE /* BeerDetailViewController.swift in Sources */,
 				CF7DA4442249838200D98423 /* Cerveceria.swift in Sources */,
 				D4EA5AE22250714800174176 /* FilterViewController.swift in Sources */,
+				CFC36E70225B3836002EC7A1 /* CerveceriaViews.swift in Sources */,
 				81BFA0282248C3DC00B2DDBE /* FirstViewController.swift in Sources */,
 				81BFA0272248C3DC00B2DDBE /* Cerveza.swift in Sources */,
 				81BFA0292248C3DC00B2DDBE /* CustomTableViewCell.swift in Sources */,
