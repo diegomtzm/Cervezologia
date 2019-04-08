@@ -28,7 +28,8 @@ class Cerveceria: NSObject, MKAnnotation {
     }
     
     var subtitle: String? {
-        return businessHours
+        return locationName
+        //businessHours
     }
     
     // markerTintColor for types: Cerveceria, Bar, Deposito
