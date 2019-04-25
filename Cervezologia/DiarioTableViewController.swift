@@ -15,6 +15,7 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
     var cervezasDiario = [CervezaDiario]()
     var filteredCervezas = [CervezaDiario]()
     var searchActive : Bool = false
+    var celdaActiva : Int = 0
     
     let alturaCelda = CGFloat(122)
 
@@ -114,6 +115,7 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
             cell.imgFoto.image = foto
         }
         
+        celdaActiva = indexPath.row
         return cell
     }
 
@@ -154,6 +156,10 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
 
     
     // MARK: - Navigation
+    
+    @IBAction func unwindDetail(unwindsegue: UIStoryboardSegue) {
+        tableView.reloadData()
+    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -162,6 +168,7 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
         if segue.identifier == "DiaryDetail" {
             let vista = segue.destination as! DiaryDetailViewController
             let indexPath = tableView.indexPathForSelectedRow!
+            celdaActiva = indexPath.row
             var actualList = [CervezaDiario]()
             if searchActive {
                 actualList = filteredCervezas
