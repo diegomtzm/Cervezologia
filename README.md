@@ -1,4 +1,4 @@
-# Cervezologia - App
+# Cervezología - App
 Instagram: @cervezologiamx
 
 ## Tabla de Contenidos
@@ -8,6 +8,6 @@ Instagram: @cervezologiamx
 ## Propósito del sistema
 Proveer de herramientas a la comunidad cervecera para que puedan conocer e interactuar más con el mercado de cerveza artesanal mexicano.
 
-## Tecnologias
-Project is created with:
+## Tecnologías
+El proyecto fue creado con:
 * Swift 4.0
