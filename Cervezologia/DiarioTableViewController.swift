@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
+class DiarioTableViewController: UITableViewController, UISearchBarDelegate, BeersDiary {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -191,6 +191,12 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
             vista.foto = foto
         }
         
+    }
+    
+    //MARK: - BeersDiary protocol methods
+    func addToDiary(cerv: Cerveza) {
+        let cerveza = CervezaDiario(nombre: cerv.nombre, estilo: cerv.estilo, cerveceria: cerv.cerveceria, origen: cerv.origen, abv: cerv.abv, ibu: cerv.ibu, srm: cerv.srm, lugar: "", almacenamiento: "", notas: "", fotoURL: cerv.fotoURL)
+        cervezasDiario.append(cerveza)
     }
     
 

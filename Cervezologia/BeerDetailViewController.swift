@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol BeersDiary {
+    func addToDiary(cerv: Cerveza)
+}
+
 class BeerDetailViewController: UIViewController {
     
     @IBOutlet weak var lbNombre: UILabel!
