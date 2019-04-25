@@ -52,7 +52,6 @@ class BeerDetailViewController: UIViewController {
         imgFoto.image = foto
         
         if isFavorite {
-            
             UIView.animate(withDuration: 0.25) { self.btFavorito.setImage(UIImage(named: "starFilled"), for: .normal) }
         } else {
             UIView.animate(withDuration: 0.25) { self.btFavorito.setImage(UIImage(named: "star"), for: .normal) }
