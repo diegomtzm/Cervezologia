@@ -118,7 +118,6 @@
         <!--Diario Cervecero-->
         <scene sceneID="a93-9w-evy">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9zb-O4-m52" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="Diario Cervecero" id="kS8-eO-REN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="note" id="Fa7-YC-ri3">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="31"/>
@@ -132,6 +131,7 @@
                         <segue destination="6S4-pE-Gs7" kind="relationship" relationship="rootViewController" id="ll3-ZY-x5O"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9zb-O4-m52" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-71" y="1141"/>
         </scene>
@@ -764,19 +764,19 @@
                         <viewLayoutGuide key="safeArea" id="YOr-wh-lcg"/>
                     </view>
                     <connections>
-                        <outlet property="ddAlmacenamiento" destination="Rms-GT-BDw" id="o1x-9J-Fjs"/>
-                        <outlet property="imgFoto" destination="lzf-KD-vd9" id="Gqb-1i-V1W"/>
-                        <outlet property="scrollView" destination="l1Y-E4-Xlb" id="UsO-Hq-30Q"/>
-                        <outlet property="tfABV" destination="If6-yb-ZHe" id="0hL-wc-R8i"/>
-                        <outlet property="tfCerveceria" destination="8mJ-gB-K0V" id="ZR1-b0-Gf9"/>
-                        <outlet property="tfEstilo" destination="1bj-sA-G70" id="5CE-mf-olN"/>
-                        <outlet property="tfIBU" destination="lPb-j0-thW" id="aSS-QX-lyX"/>
-                        <outlet property="tfLugar" destination="Te6-A7-GgN" id="iH1-as-NQ5"/>
-                        <outlet property="tfNombre" destination="v0G-ab-72G" id="L5y-Sh-hDX"/>
-                        <outlet property="tfOrigen" destination="iw6-yD-cNC" id="8nJ-rO-kKi"/>
-                        <outlet property="tfSRM" destination="CEw-qb-Obr" id="FYP-r7-eJF"/>
-                        <outlet property="tvNotas" destination="xJI-TW-5CZ" id="dLk-Qn-z73"/>
-                        <outlet property="vista" destination="gqO-qi-zi1" id="slL-VY-8Xa"/>
+                        <outlet property="ddAlmacenamiento" destination="Rms-GT-BDw" id="1fK-ha-mmh"/>
+                        <outlet property="imgFoto" destination="lzf-KD-vd9" id="2sV-E1-xyP"/>
+                        <outlet property="scrollView" destination="l1Y-E4-Xlb" id="u3L-qP-e37"/>
+                        <outlet property="tfABV" destination="If6-yb-ZHe" id="B6K-Qv-KER"/>
+                        <outlet property="tfCerveceria" destination="8mJ-gB-K0V" id="JdS-DH-Z9g"/>
+                        <outlet property="tfEstilo" destination="1bj-sA-G70" id="XD0-Gd-XcL"/>
+                        <outlet property="tfIBU" destination="lPb-j0-thW" id="SEy-4J-Yow"/>
+                        <outlet property="tfLugar" destination="Te6-A7-GgN" id="GA9-mj-vkI"/>
+                        <outlet property="tfNombre" destination="v0G-ab-72G" id="vU6-EE-S3f"/>
+                        <outlet property="tfOrigen" destination="iw6-yD-cNC" id="qSW-2E-bVR"/>
+                        <outlet property="tfSRM" destination="CEw-qb-Obr" id="Vuc-WR-hh0"/>
+                        <outlet property="tvNotas" destination="xJI-TW-5CZ" id="yLQ-pn-kHp"/>
+                        <outlet property="vista" destination="gqO-qi-zi1" id="S1m-fl-aAJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cL0-Yo-Ruo" userLabel="First Responder" sceneMemberID="firstResponder"/>
