@@ -148,14 +148,14 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
         self.tableView.reloadData()
     }
     
-    //MARK - Codable persistence
+    //MARK - Codable persistence for favorites
     func storeFavorites() {
         do {
             print(Cerveza.archiveURL.path)
             let data = try PropertyListEncoder().encode(favoriteCervezas)
             try data.write(to: Cerveza.archiveURL)
         } catch {
-            print("Save Failed")
+            print("Favorites save failed")
         }
     }
     
@@ -165,7 +165,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
             let fvts = try PropertyListDecoder().decode([Cerveza].self, from: data)
             return fvts
         } catch {
-            print("Error reading or decoding file")
+            print("Error reading or decoding favorites file")
             return [Cerveza]()
         }
     }

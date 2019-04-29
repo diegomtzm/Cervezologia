@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol BeersDiary {
-    func addToDiary(cerv: Cerveza)
-}
+//protocol BeersDiary {
+//    func addToDiary(cerv: Cerveza)
+//}
 
 class BeerDetailViewController: UIViewController {
     
@@ -38,6 +38,8 @@ class BeerDetailViewController: UIViewController {
     var fotourl : String = ""
     var foto : UIImage?
     var isFavorite : Bool = false
+    
+    var diarioVC : DiarioTableViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +62,10 @@ class BeerDetailViewController: UIViewController {
         } else {
             UIView.animate(withDuration: 0.25) { self.btFavorito.setImage(UIImage(named: "star"), for: .normal) }
             
-        }        
+        }
+        
+        let navigationCtrl = tabBarController?.viewControllers![2] as! UINavigationController
+        diarioVC = (navigationCtrl.viewControllers[0] as! DiarioTableViewController)
     }
     
     @IBAction func btListaDeInteres(_ sender: UIButton) {
@@ -89,6 +94,11 @@ class BeerDetailViewController: UIViewController {
             }
             tableViewCtrl.storeFavorites()
         }
+    }
+    
+    @IBAction func btAddToDiary(_ sender: UIButton) {
+        diarioVC.addToDiary(cerv: cervezaActual)
+        cervezaActual.inDiary = true
     }
     
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiarioTableViewController: UITableViewController, UISearchBarDelegate, BeersDiary {
+class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -22,17 +22,18 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate, Bee
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getCervezasDiario()
+        //getCervezasDiario()
+        obtenerListaDiario()
 
     }
     
-    func getCervezasDiario() {
-        let cerveza1 = CervezaDiario(nombre: "Cerveza 1", estilo: "Estilo 1", cerveceria: "Cerveceria 1", origen: "Origen 1", abv: "5", ibu: "10", srm: "22", lugar: "Lugar 1", almacenamiento: "Alm1", notas: "Notas 1", fotoURL: "-")
-        let cerveza2 = CervezaDiario(nombre: "Cerveza 2", estilo: "Estilo 2", cerveceria: "Cerveceria 2", origen: "Origen 2", abv: "5", ibu: "10", srm: "22", lugar: "Lugar 2", almacenamiento: "Alm2", notas: "Notas 2", fotoURL: "-")
-        self.cervezasDiario.append(cerveza1)
-        self.cervezasDiario.append(cerveza2)
-        self.tableView.reloadData()
-    }
+//    func getCervezasDiario() {
+//        let cerveza1 = CervezaDiario(nombre: "Cerveza 1", estilo: "Estilo 1", cerveceria: "Cerveceria 1", origen: "Origen 1", abv: "5", ibu: "10", srm: "22", lugar: "Lugar 1", almacenamiento: "Alm1", notas: "Notas 1", fotoURL: "-")
+//        let cerveza2 = CervezaDiario(nombre: "Cerveza 2", estilo: "Estilo 2", cerveceria: "Cerveceria 2", origen: "Origen 2", abv: "5", ibu: "10", srm: "22", lugar: "Lugar 2", almacenamiento: "Alm2", notas: "Notas 2", fotoURL: "-")
+//        self.cervezasDiario.append(cerveza1)
+//        self.cervezasDiario.append(cerveza2)
+//        self.tableView.reloadData()
+//    }
     
     func photoFromURL(urlString: String) -> UIImage {
         if let url = URL(string: urlString) {
@@ -192,12 +193,39 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate, Bee
         }
         
     }
-    
-    //MARK: - BeersDiary protocol methods
+
     func addToDiary(cerv: Cerveza) {
         let cerveza = CervezaDiario(nombre: cerv.nombre, estilo: cerv.estilo, cerveceria: cerv.cerveceria, origen: cerv.origen, abv: cerv.abv, ibu: cerv.ibu, srm: cerv.srm, lugar: "", almacenamiento: "", notas: "", fotoURL: cerv.fotoURL)
         cervezasDiario.append(cerveza)
+        storeBeerDiary()
+        tableView.reloadData()
     }
     
-
+    //MARK - Codable persistence for diary
+    func storeBeerDiary() {
+        do {
+            print(CervezaDiario.archiveURL.path)
+            let data = try PropertyListEncoder().encode(cervezasDiario)
+            try data.write(to: CervezaDiario.archiveURL)
+        } catch {
+            print("Beer diary save failed")
+        }
+    }
+    
+    func retrieveBeerDiary() -> [CervezaDiario]? {
+        do {
+            let data = try Data(contentsOf: CervezaDiario.archiveURL)
+            let diaryBeers = try PropertyListDecoder().decode([CervezaDiario].self, from: data)
+            return diaryBeers
+        } catch {
+            print("Error reading or decoding beer diary file")
+            return [CervezaDiario]()
+        }
+    }
+    
+    func obtenerListaDiario() {
+        cervezasDiario.removeAll()
+        let tmp = retrieveBeerDiary()
+        cervezasDiario = tmp!
+    }
 }
