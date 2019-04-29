@@ -47,7 +47,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         
         
         // show artwork on map
-        let cerveceria1 = Cerveceria(title: "Sierra Madre Brewing Co.", locationName: "Garza Sada", businessHours: "Horario: 12:00-0:00", type: "Cerveceria", coordinate: CLLocationCoordinate2D(latitude: 25.625068, longitude: -100.274822))
+        let cerveceria1 = Cerveceria(title: "Sierra Madre Brewing Co.", locationName: "Av. Eugenio Garza Sada 4373, Contry, 64860 Monterrey, N.L.", businessHours: "Horario: 12:00-0:00", type: "Cerveceria", coordinate: CLLocationCoordinate2D(latitude: 25.625068, longitude: -100.274822))
         let cerveceria2 = Cerveceria(title: "Almacen 42", locationName: "Calle de Morelos 852, Barrio Antiguo, Centro, 64000 Monterrey, N.L.", businessHours: "Horario: 14:00-2:00", type: "Bar", coordinate: CLLocationCoordinate2D(latitude: 25.666625, longitude: -100.308229))
         let cerveceria3 = Cerveceria(title: "Esquina Edison", locationName: "Thomas Alva Edison 1328, Industrial, 64440 Monterrey, N.L.", businessHours: "Horario: 9:00-22:00", type: "Depósito", coordinate: CLLocationCoordinate2D(latitude: 25.689774, longitude: -100.332832))
         let cerveceria4 = Cerveceria(title: "Beer For Us", locationName: "Av Alfonso Reyes 341 Contry, El Tesoro, 64850 Monterrey, N.L.", businessHours: "Horario: 11:00-21:00", type: "Depósito", coordinate: CLLocationCoordinate2D(latitude: 25.643898, longitude: -100.276195))
