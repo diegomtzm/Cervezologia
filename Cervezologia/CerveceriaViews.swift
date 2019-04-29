@@ -17,7 +17,7 @@ class CerveceriaMarkerView: MKMarkerAnnotationView {
             
             let mapsButton = UIButton(frame: CGRect(origin: CGPoint.zero,
                                                     size: CGSize(width: 30, height: 30)))
-            mapsButton.setBackgroundImage(UIImage(named: "direction"), for: UIControl.State())
+            mapsButton.setBackgroundImage(UIImage(named: "direction1"), for: UIControl.State())
             rightCalloutAccessoryView = mapsButton
 
             let detailLabel = UILabel()
