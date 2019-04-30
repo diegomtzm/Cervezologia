@@ -47,7 +47,7 @@ class DiaryDetailViewController: UIViewController {
         
         scrollView.contentSize = vista.frame.size
         
-        ddAlmacenamiento.optionArray = ["Botella", "Lata", "Barril"]
+        ddAlmacenamiento.optionArray = ["", "Botella", "Lata", "Barril"]
         ddAlmacenamiento.selectedRowColor = UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 1)
         ddAlmacenamiento.arrowSize = 12
         ddAlmacenamiento.isSearchEnable = false
@@ -85,6 +85,7 @@ class DiaryDetailViewController: UIViewController {
         let not = tvNotas.text!
         let cerveza = CervezaDiario(nombre: nom, estilo: est, cerveceria: cerv, origen: orig, abv: ABV, ibu: IBU, srm: SRM, lugar: lug, almacenamiento: alm, notas: not, fotoURL: fotourl)
         vistaAnt.cervezasDiario[vistaAnt.celdaActiva] = cerveza
+        vistaAnt.storeBeerDiary()
     }
     
 

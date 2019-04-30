@@ -17,23 +17,15 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
     var searchActive : Bool = false
     var celdaActiva : Int = 0
     
+    var catalagoVC : TableViewController!
+    
     let alturaCelda = CGFloat(122)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //getCervezasDiario()
         obtenerListaDiario()
-
     }
-    
-//    func getCervezasDiario() {
-//        let cerveza1 = CervezaDiario(nombre: "Cerveza 1", estilo: "Estilo 1", cerveceria: "Cerveceria 1", origen: "Origen 1", abv: "5", ibu: "10", srm: "22", lugar: "Lugar 1", almacenamiento: "Alm1", notas: "Notas 1", fotoURL: "-")
-//        let cerveza2 = CervezaDiario(nombre: "Cerveza 2", estilo: "Estilo 2", cerveceria: "Cerveceria 2", origen: "Origen 2", abv: "5", ibu: "10", srm: "22", lugar: "Lugar 2", almacenamiento: "Alm2", notas: "Notas 2", fotoURL: "-")
-//        self.cervezasDiario.append(cerveza1)
-//        self.cervezasDiario.append(cerveza2)
-//        self.tableView.reloadData()
-//    }
     
     func photoFromURL(urlString: String) -> UIImage {
         if let url = URL(string: urlString) {
@@ -224,8 +216,16 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func obtenerListaDiario() {
+        let navigationCtrl = tabBarController?.viewControllers![1] as! UINavigationController
+        catalagoVC = (navigationCtrl.viewControllers[0] as! TableViewController)
+        
         cervezasDiario.removeAll()
         let tmp = retrieveBeerDiary()
         cervezasDiario = tmp!
+        for cerveza in cervezasDiario {
+            if let index = catalagoVC.cervezas.firstIndex(where: { $0.nombre == cerveza.nombre }) {
+                catalagoVC.cervezas[index].inDiary = true
+            }
+        }
     }
 }

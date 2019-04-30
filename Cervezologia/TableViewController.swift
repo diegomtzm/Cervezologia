@@ -34,6 +34,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
                        "ibu": ["", 0],
                        "srm": ["", 0]]
     
+    var diarioVC : DiarioTableViewController!
+    
     let alturaCelda = CGFloat(122)
 
     override func viewDidLoad() {
@@ -53,6 +55,9 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
         
         self.navigationItem.leftItemsSupplementBackButton = true
         self.navigationItem.leftBarButtonItem = btFavorites
+        
+        let navigationCtrl = tabBarController?.viewControllers![2] as! UINavigationController
+        diarioVC = (navigationCtrl.viewControllers[0] as! DiarioTableViewController)
         
         getBeers()
     }
@@ -79,6 +84,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
                 }
                 self.tableView.reloadData()
                 self.obtenerListaFavoritos()
+                self.diarioVC.obtenerListaDiario()
             }
         }
     }
@@ -287,6 +293,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
             let foto = photoFromURL(urlString: actualList[indexPath.row].fotoURL)
             vista.foto = foto
             vista.isFavorite = actualList[indexPath.row].isFavorite
+            vista.inDiary = actualList[indexPath.row].inDiary
         } else {
             let vista = segue.destination as! FilterViewController
             vista.delegado = self

@@ -523,6 +523,7 @@
                         <viewLayoutGuide key="safeArea" id="vSW-hp-2wQ"/>
                     </view>
                     <connections>
+                        <outlet property="btDiary" destination="jjS-K1-gAS" id="fbG-eO-Iwr"/>
                         <outlet property="btFavorito" destination="a7L-YP-Q6w" id="eYU-wQ-4aV"/>
                         <outlet property="imgFoto" destination="LMx-xf-wJQ" id="3w8-CI-e1w"/>
                         <outlet property="lbAbv" destination="zdg-iW-inH" id="oTm-Nh-DEX"/>

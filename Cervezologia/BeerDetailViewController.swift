@@ -25,6 +25,7 @@ class BeerDetailViewController: UIViewController {
     @IBOutlet weak var btFavorito: UIButton!
     @IBOutlet weak var vista: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var btDiary: UIButton!
     
     var cervezaActual : Cerveza!
     
@@ -38,8 +39,7 @@ class BeerDetailViewController: UIViewController {
     var fotourl : String = ""
     var foto : UIImage?
     var isFavorite : Bool = false
-    
-    var diarioVC : DiarioTableViewController!
+    var inDiary : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +47,7 @@ class BeerDetailViewController: UIViewController {
         cervezaActual = Cerveza(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, fotoURL: fotourl)
         
         print("FAVORITE? " + String(isFavorite))
+        print("IN DIARY? " + String(inDiary))
         
         scrollView.contentSize = vista.frame.size
         
@@ -63,11 +64,16 @@ class BeerDetailViewController: UIViewController {
             UIView.animate(withDuration: 0.25) { self.btFavorito.setImage(UIImage(named: "starFilled"), for: .normal) }
         } else {
             UIView.animate(withDuration: 0.25) { self.btFavorito.setImage(UIImage(named: "star"), for: .normal) }
-            
         }
         
-        let navigationCtrl = tabBarController?.viewControllers![2] as! UINavigationController
-        diarioVC = (navigationCtrl.viewControllers[0] as! DiarioTableViewController)
+        if inDiary {
+            btDiary.isEnabled = false
+            btDiary.isHidden = true
+        } else {
+            btDiary.isEnabled = true
+            btDiary.isHidden = false
+        }
+        
     }
     
     @IBAction func btListaDeInteres(_ sender: UIButton) {
@@ -99,8 +105,19 @@ class BeerDetailViewController: UIViewController {
     }
     
     @IBAction func btAddToDiary(_ sender: UIButton) {
-        diarioVC.addToDiary(cerv: cervezaActual)
+        btDiary.isHidden = true
+        btDiary.isEnabled = false
+        
+        let count = (self.navigationController?.viewControllers.count)!
+        let tableViewCtrl = self.navigationController?.viewControllers[count - 2] as! TableViewController
+        
+        let index = tableViewCtrl.cervezas.firstIndex { (cerveza) -> Bool in
+            cerveza.nombre == cervezaActual.nombre
+        }
+        
+        tableViewCtrl.cervezas[index!].inDiary = true
         cervezaActual.inDiary = true
+        tableViewCtrl.diarioVC.addToDiary(cerv: cervezaActual)
     }
     
     
