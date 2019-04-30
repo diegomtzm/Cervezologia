@@ -23,9 +23,23 @@ class CervezaDiario: Codable {
     var lugar: String = ""
     var almacenamiento: String = ""
     var notas: String = ""
-    var fotoURL : String = ""
+    var foto : UIImage
     
-    init(nombre : String, estilo : String, cerveceria : String, origen : String, abv : String, ibu : String, srm : String, lugar : String, almacenamiento : String, notas : String, fotoURL : String) {
+    init() {
+        self.nombre = ""
+        self.estilo = ""
+        self.cerveceria = ""
+        self.origen = ""
+        self.abv = ""
+        self.ibu = ""
+        self.srm = ""
+        self.lugar = ""
+        self.almacenamiento = ""
+        self.notas = ""
+        self.foto = UIImage(named: "cerveza")!
+    }
+    
+    init(nombre : String, estilo : String, cerveceria : String, origen : String, abv : String, ibu : String, srm : String, lugar : String, almacenamiento : String, notas : String, foto : UIImage) {
         self.nombre = nombre
         self.estilo = estilo
         self.cerveceria = cerveceria
@@ -36,7 +50,7 @@ class CervezaDiario: Codable {
         self.lugar = lugar
         self.almacenamiento = almacenamiento
         self.notas = notas
-        self.fotoURL = fotoURL
+        self.foto = foto
     }
     
     enum CodingKeys: String, CodingKey {
@@ -50,7 +64,7 @@ class CervezaDiario: Codable {
         case lugar
         case almacenamiento
         case notas
-        case fotoURL
+        case foto
     }
     
     func encode(to encoder: Encoder) throws {
@@ -65,7 +79,8 @@ class CervezaDiario: Codable {
         try container.encode(lugar, forKey: .lugar)
         try container.encode(almacenamiento, forKey: .almacenamiento)
         try container.encode(notas, forKey: .notas)
-        try container.encode(fotoURL, forKey: .fotoURL)
+        let dataDeFoto = foto.pngData()
+        try container.encode(dataDeFoto, forKey: .foto)
     }
     
     required init(from decoder: Decoder) throws {
@@ -80,6 +95,8 @@ class CervezaDiario: Codable {
         lugar = try container.decode(String.self, forKey: .lugar)
         almacenamiento = try container.decode(String.self, forKey: .almacenamiento)
         notas = try container.decode(String.self, forKey: .notas)
-        fotoURL = try container.decode(String.self, forKey: .fotoURL)
+       
+        let dataDeFoto = try container.decode(Data.self, forKey: .foto)
+        foto = UIImage(data: dataDeFoto)!
     }
 }

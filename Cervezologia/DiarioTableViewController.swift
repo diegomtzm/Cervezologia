@@ -104,13 +104,11 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
         if searchActive {
             cell.lbNombre.text = filteredCervezas[indexPath.row].nombre
             cell.lbEstilo.text = filteredCervezas[indexPath.row].estilo
-            let foto = photoFromURL(urlString: filteredCervezas[indexPath.row].fotoURL)
-            cell.imgFoto.image = foto
+            cell.imgFoto.image = filteredCervezas[indexPath.row].foto
         } else {
             cell.lbNombre.text = cervezasDiario[indexPath.row].nombre
             cell.lbEstilo.text = cervezasDiario[indexPath.row].estilo
-            let foto = photoFromURL(urlString: cervezasDiario[indexPath.row].fotoURL)
-            cell.imgFoto.image = foto
+            cell.imgFoto.image = cervezasDiario[indexPath.row].foto
         }
         
         celdaActiva = indexPath.row
@@ -186,15 +184,17 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
             vista.lugar = actualList[indexPath.row].lugar
             vista.almacenamiento = actualList[indexPath.row].almacenamiento
             vista.notas = actualList[indexPath.row].notas
-            vista.fotourl = actualList[indexPath.row].fotoURL
-            let foto = photoFromURL(urlString: actualList[indexPath.row].fotoURL)
-            vista.foto = foto
+            vista.foto = actualList[indexPath.row].foto
+        } else {
+            let cervezaVacia = CervezaDiario()
+            cervezasDiario.append(cervezaVacia)
+            celdaActiva = cervezasDiario.count - 1
         }
-        
     }
 
     func addToDiary(cerv: Cerveza) {
-        let cerveza = CervezaDiario(nombre: cerv.nombre, estilo: cerv.estilo, cerveceria: cerv.cerveceria, origen: cerv.origen, abv: cerv.abv, ibu: cerv.ibu, srm: cerv.srm, lugar: "", almacenamiento: "", notas: "", fotoURL: cerv.fotoURL)
+        let cervfoto = photoFromURL(urlString: cerv.fotoURL)
+        let cerveza = CervezaDiario(nombre: cerv.nombre, estilo: cerv.estilo, cerveceria: cerv.cerveceria, origen: cerv.origen, abv: cerv.abv, ibu: cerv.ibu, srm: cerv.srm, lugar: "", almacenamiento: "", notas: "", foto: cervfoto)
         cervezasDiario.append(cerveza)
         storeBeerDiary()
         tableView.reloadData()

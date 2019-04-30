@@ -552,8 +552,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l1Y-E4-Xlb">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gqO-qi-zi1">
-                                        <rect key="frame" x="0.0" y="-324" width="375" height="1053"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqO-qi-zi1">
+                                        <rect key="frame" x="0.0" y="-326" width="375" height="999"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IBU:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWm-uD-ImI">
                                                 <rect key="frame" x="138" y="665" width="35" height="21"/>
@@ -744,6 +744,7 @@
                                             <constraint firstItem="Dfv-fJ-oye" firstAttribute="leading" secondItem="xRt-bF-kwb" secondAttribute="leading" id="M3u-pj-823"/>
                                             <constraint firstItem="CEw-qb-Obr" firstAttribute="leading" secondItem="xRt-bF-kwb" secondAttribute="trailing" constant="5" id="POg-tX-lrQ"/>
                                             <constraint firstItem="oJD-Km-1dh" firstAttribute="leading" secondItem="Dfv-fJ-oye" secondAttribute="leading" id="Q4b-H4-IUi"/>
+                                            <constraint firstItem="SwI-ce-ikq" firstAttribute="top" secondItem="Rms-GT-BDw" secondAttribute="bottom" constant="6" id="S0h-kL-RXs"/>
                                             <constraint firstItem="xRt-bF-kwb" firstAttribute="baseline" secondItem="jWm-uD-ImI" secondAttribute="baseline" id="S32-h1-52n"/>
                                             <constraint firstItem="CEw-qb-Obr" firstAttribute="baseline" secondItem="lPb-j0-thW" secondAttribute="baseline" id="T5F-Tf-xiP"/>
                                             <constraint firstItem="8mJ-gB-K0V" firstAttribute="top" secondItem="Dfv-fJ-oye" secondAttribute="bottom" constant="4" id="UCn-vU-LMp"/>
@@ -761,7 +762,6 @@
                                             <constraint firstItem="1bj-sA-G70" firstAttribute="trailing" secondItem="iw6-yD-cNC" secondAttribute="trailing" id="cRU-pR-7qr"/>
                                             <constraint firstItem="1bj-sA-G70" firstAttribute="leading" secondItem="iw6-yD-cNC" secondAttribute="leading" id="cqp-Wm-1hR"/>
                                             <constraint firstItem="v0G-ab-72G" firstAttribute="trailing" secondItem="1bj-sA-G70" secondAttribute="trailing" id="cuG-OQ-FgK"/>
-                                            <constraint firstAttribute="height" constant="999" id="dfF-MG-mCH"/>
                                             <constraint firstItem="Te6-A7-GgN" firstAttribute="leading" secondItem="xJI-TW-5CZ" secondAttribute="leading" id="dlD-2o-apM"/>
                                             <constraint firstItem="iw6-yD-cNC" firstAttribute="top" secondItem="oJD-Km-1dh" secondAttribute="bottom" constant="3" id="ems-E2-7qS"/>
                                             <constraint firstAttribute="trailing" secondItem="If6-yb-ZHe" secondAttribute="trailing" constant="24" id="fRy-Vu-1qJ"/>
@@ -785,9 +785,9 @@
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="gqO-qi-zi1" secondAttribute="bottom" constant="-173" id="9rj-CS-3Cf"/>
                                     <constraint firstItem="gqO-qi-zi1" firstAttribute="centerX" secondItem="l1Y-E4-Xlb" secondAttribute="centerX" id="GiC-7W-qHH"/>
-                                    <constraint firstAttribute="bottom" secondItem="gqO-qi-zi1" secondAttribute="bottom" constant="-117" id="LUh-ni-qJ7"/>
-                                    <constraint firstItem="gqO-qi-zi1" firstAttribute="top" secondItem="l1Y-E4-Xlb" secondAttribute="top" constant="-328" id="RuH-Py-mJ0"/>
+                                    <constraint firstItem="gqO-qi-zi1" firstAttribute="top" secondItem="l1Y-E4-Xlb" secondAttribute="top" constant="-326" id="QTG-Pe-uqe"/>
                                     <constraint firstItem="gqO-qi-zi1" firstAttribute="leading" secondItem="l1Y-E4-Xlb" secondAttribute="leading" id="YJ4-5G-wud"/>
                                     <constraint firstAttribute="trailing" secondItem="gqO-qi-zi1" secondAttribute="trailing" id="qop-O0-3vl"/>
                                 </constraints>
@@ -884,6 +884,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Diario Cervecero" largeTitleDisplayMode="always" id="b8c-fc-ka2">
                         <barButtonItem key="leftBarButtonItem" id="76W-Hi-Clt"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="eqO-1L-81w">
+                            <connections>
+                                <segue destination="ZYk-bc-0FF" kind="show" identifier="AddNew" id="pov-hV-IAD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="REH-jI-SkG" id="PFL-6v-KgK"/>
@@ -1097,5 +1102,8 @@ AAAAAAAAAAAALHU
         <image name="map-location(1)" width="24" height="24"/>
         <image name="note" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="pov-hV-IAD"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

@@ -37,13 +37,12 @@ class DiaryDetailViewController: UIViewController {
     var lugar : String = ""
     var almacenamiento : String = ""
     var notas : String = ""
-    var fotourl : String = ""
-    var foto : UIImage?
+    var foto : UIImage = UIImage(named: "cerveza")!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        cervezaActual = CervezaDiario(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, lugar: lugar, almacenamiento: almacenamiento, notas: notas, fotoURL: fotourl)
+        cervezaActual = CervezaDiario(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, lugar: lugar, almacenamiento: almacenamiento, notas: notas, foto: foto)
         
         scrollView.contentSize = vista.frame.size
         
@@ -63,7 +62,6 @@ class DiaryDetailViewController: UIViewController {
         ddAlmacenamiento.text = almacenamiento
         tvNotas.text = notas
         imgFoto.image = foto
-        
     }
     
     // MARK: - Navigation
@@ -83,7 +81,8 @@ class DiaryDetailViewController: UIViewController {
         let lug = tfLugar.text!
         let alm = ddAlmacenamiento.text!
         let not = tvNotas.text!
-        let cerveza = CervezaDiario(nombre: nom, estilo: est, cerveceria: cerv, origen: orig, abv: ABV, ibu: IBU, srm: SRM, lugar: lug, almacenamiento: alm, notas: not, fotoURL: fotourl)
+        let fot = imgFoto.image!
+        let cerveza = CervezaDiario(nombre: nom, estilo: est, cerveceria: cerv, origen: orig, abv: ABV, ibu: IBU, srm: SRM, lugar: lug, almacenamiento: alm, notas: not, foto: fot)
         vistaAnt.cervezasDiario[vistaAnt.celdaActiva] = cerveza
         vistaAnt.storeBeerDiary()
     }
