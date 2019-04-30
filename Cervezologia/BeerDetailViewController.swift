@@ -46,6 +46,8 @@ class BeerDetailViewController: UIViewController {
 
         cervezaActual = Cerveza(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, fotoURL: fotourl)
         
+        print("FAVORITE? " + String(isFavorite))
+        
         scrollView.contentSize = vista.frame.size
         
         lbNombre.text = nombre

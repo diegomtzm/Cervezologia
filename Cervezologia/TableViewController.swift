@@ -33,7 +33,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
                        "abv": ["", 0],
                        "ibu": ["", 0],
                        "srm": ["", 0]]
-
     
     let alturaCelda = CGFloat(122)
 
@@ -54,8 +53,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
         
         self.navigationItem.leftItemsSupplementBackButton = true
         self.navigationItem.leftBarButtonItem = btFavorites
-        
-        obtenerListaFavoritos()
         
         getBeers()
     }
@@ -81,6 +78,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
                     self.cervezas.append(cerveza)
                 }
                 self.tableView.reloadData()
+                self.obtenerListaFavoritos()
             }
         }
     }
@@ -176,12 +174,9 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
         favoriteCervezas = tmp!
         for favorita in favoriteCervezas {
             favorita.isFavorite = true
-            if let index = cervezas.firstIndex(where: { (cerveza) -> Bool in
-                cerveza.nombre == favorita.nombre
-            }) {
+            if let index = cervezas.firstIndex(where: { $0.nombre == favorita.nombre }) {
                 cervezas[index].isFavorite = true
             }
-            
         }
     }
 
