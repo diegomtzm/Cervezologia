@@ -9,7 +9,7 @@
 import UIKit
 import iOSDropDown
 
-class DiaryDetailViewController: UIViewController {
+class DiaryDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var tfNombre: UITextField!
     @IBOutlet weak var tfEstilo: UITextField!
@@ -27,7 +27,7 @@ class DiaryDetailViewController: UIViewController {
     
     var cervezaActual : CervezaDiario!
     
-    var nombre : String = ""
+    var nombre : String = " "
     var estilo : String = ""
     var cerveceria : String = ""
     var origen : String = ""
@@ -64,12 +64,79 @@ class DiaryDetailViewController: UIViewController {
         imgFoto.image = foto
     }
     
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    
+    
+    //MARK - Image Picker
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        imgFoto.image = selectedImage
+        if picker.sourceType == .camera {
+            UIImageWriteToSavedPhotosAlbum(imgFoto.image!, nil, nil, nil)
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func loadPhoto(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
+            self.openPhotoLibrary()
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func openCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have a camera", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func openPhotoLibrary() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have permission to access photo library.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         let vistaAnt = segue.destination as! DiarioTableViewController
         let nom = tfNombre.text!
         let est = tfEstilo.text!
@@ -84,6 +151,7 @@ class DiaryDetailViewController: UIViewController {
         let fot = imgFoto.image!
         let cerveza = CervezaDiario(nombre: nom, estilo: est, cerveceria: cerv, origen: orig, abv: ABV, ibu: IBU, srm: SRM, lugar: lug, almacenamiento: alm, notas: not, foto: fot)
         vistaAnt.cervezasDiario[vistaAnt.celdaActiva] = cerveza
+        vistaAnt.backTapped = false
         vistaAnt.storeBeerDiary()
     }
     

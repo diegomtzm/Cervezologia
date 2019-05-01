@@ -118,6 +118,9 @@ class BeerDetailViewController: UIViewController {
         tableViewCtrl.cervezas[index!].inDiary = true
         cervezaActual.inDiary = true
         tableViewCtrl.diarioVC.addToDiary(cerv: cervezaActual)
+        tableViewCtrl.diarioVC.selectLastRow()
+        navigationController?.popViewController(animated: true)
+        self.tabBarController?.selectedIndex = 2
     }
     
     

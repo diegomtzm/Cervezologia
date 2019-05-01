@@ -623,7 +623,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Notas:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwI-ce-ikq">
-                                                <rect key="frame" x="20" y="831" width="97" height="21"/>
+                                                <rect key="frame" x="20" y="824" width="161" height="28"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -700,8 +700,8 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnL-oT-YRK">
-                                                <rect key="frame" x="275" y="388" width="76" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnL-oT-YRK">
+                                                <rect key="frame" x="295" y="388" width="56" height="30"/>
                                                 <color key="backgroundColor" red="0.41176470590000003" green="0.1647058824" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Guardar"/>
                                                 <connections>
@@ -719,8 +719,16 @@
                                                     <segue destination="xDw-Bx-6Bk" kind="unwind" unwindAction="unwindDetailWithUnwindsegue:" id="FF9-0P-kU5"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucm-1X-jVt">
+                                                <rect key="frame" x="252" y="387" width="32" height="32"/>
+                                                <state key="normal" image="camara-black"/>
+                                                <connections>
+                                                    <action selector="loadPhoto:" destination="ZYk-bc-0FF" eventType="touchUpInside" id="jvs-a7-uyn"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.94943576389999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="E7x-77-4FA" firstAttribute="top" secondItem="v0G-ab-72G" secondAttribute="bottom" constant="5" id="1u9-bo-Yo0"/>
                                             <constraint firstItem="o3g-qb-uH5" firstAttribute="top" secondItem="Te6-A7-GgN" secondAttribute="bottom" constant="9" id="2Gu-dS-c9s"/>
@@ -739,6 +747,7 @@
                                             <constraint firstItem="v0G-ab-72G" firstAttribute="top" secondItem="0DN-VQ-TZr" secondAttribute="bottom" constant="8" symbolic="YES" id="HwK-N8-r6a"/>
                                             <constraint firstItem="E7x-77-4FA" firstAttribute="leading" secondItem="oJD-Km-1dh" secondAttribute="leading" id="IlB-Ge-Xnb"/>
                                             <constraint firstItem="xRt-bF-kwb" firstAttribute="leading" secondItem="T1T-Wz-sTE" secondAttribute="leading" id="JKz-E2-dcG"/>
+                                            <constraint firstItem="AnL-oT-YRK" firstAttribute="leading" secondItem="ucm-1X-jVt" secondAttribute="trailing" constant="11" id="JmC-fW-7Nd"/>
                                             <constraint firstItem="If6-yb-ZHe" firstAttribute="leading" secondItem="mB0-ck-jPq" secondAttribute="trailing" constant="5" id="KRC-s9-znt"/>
                                             <constraint firstItem="0DN-VQ-TZr" firstAttribute="leading" secondItem="gqO-qi-zi1" secondAttribute="leading" constant="20" id="KmZ-xM-6M3"/>
                                             <constraint firstItem="Dfv-fJ-oye" firstAttribute="leading" secondItem="xRt-bF-kwb" secondAttribute="leading" id="M3u-pj-823"/>
@@ -768,6 +777,7 @@
                                             <constraint firstItem="lPb-j0-thW" firstAttribute="leading" secondItem="jWm-uD-ImI" secondAttribute="trailing" constant="6" id="iCe-s0-9Ro"/>
                                             <constraint firstItem="AnL-oT-YRK" firstAttribute="top" secondItem="lzf-KD-vd9" secondAttribute="bottom" constant="13" id="itl-ji-e12"/>
                                             <constraint firstItem="jWm-uD-ImI" firstAttribute="baseline" secondItem="mB0-ck-jPq" secondAttribute="baseline" id="kfN-n5-rc3"/>
+                                            <constraint firstItem="ucm-1X-jVt" firstAttribute="top" secondItem="lzf-KD-vd9" secondAttribute="bottom" constant="12" id="lUx-uW-3Kq"/>
                                             <constraint firstItem="aB3-Lz-NlA" firstAttribute="top" secondItem="xJI-TW-5CZ" secondAttribute="bottom" constant="14" id="mba-nD-DFf"/>
                                             <constraint firstItem="T1T-Wz-sTE" firstAttribute="top" secondItem="CEw-qb-Obr" secondAttribute="bottom" constant="8" symbolic="YES" id="o6x-fW-Dp3"/>
                                             <constraint firstItem="Te6-A7-GgN" firstAttribute="leading" secondItem="Rms-GT-BDw" secondAttribute="leading" id="pmc-wU-1Ev"/>
@@ -782,6 +792,9 @@
                                             <constraint firstItem="xJI-TW-5CZ" firstAttribute="top" secondItem="SwI-ce-ikq" secondAttribute="bottom" constant="6" id="vTj-HY-buG"/>
                                             <constraint firstItem="If6-yb-ZHe" firstAttribute="trailing" secondItem="AnL-oT-YRK" secondAttribute="trailing" id="zv8-di-WIm"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Fvc-lh-Xcb" appends="YES" id="KE6-ba-AB5"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -821,6 +834,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cL0-Yo-Ruo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="xDw-Bx-6Bk" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="Fvc-lh-Xcb">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="ZYk-bc-0FF" id="ckG-cL-Mg9"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1700" y="1138.3808095952024"/>
         </scene>
@@ -1099,11 +1117,12 @@ iyv3K/kr/iwMLBAsFywcLCksLCw5LD4sRixJLE4sVixZLGssbixzAAAAAAAAAgEAAAAAAAAAWQAAAAAA
 AAAAAAAAAAAALHU
 </mutableData>
         </image>
+        <image name="camara-black" width="32" height="32"/>
         <image name="map-location(1)" width="24" height="24"/>
         <image name="note" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pov-hV-IAD"/>
+        <segue reference="913-sY-rlR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

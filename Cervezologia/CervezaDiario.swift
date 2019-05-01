@@ -79,7 +79,7 @@ class CervezaDiario: Codable {
         try container.encode(lugar, forKey: .lugar)
         try container.encode(almacenamiento, forKey: .almacenamiento)
         try container.encode(notas, forKey: .notas)
-        let dataDeFoto = foto.pngData()
+        let dataDeFoto = foto.jpegData(compressionQuality: 0.8)
         try container.encode(dataDeFoto, forKey: .foto)
     }
     

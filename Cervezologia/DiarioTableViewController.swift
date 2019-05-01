@@ -19,6 +19,8 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
     
     var catalagoVC : TableViewController!
     
+    var backTapped = false
+    
     let alturaCelda = CGFloat(122)
 
     override func viewDidLoad() {
@@ -30,6 +32,13 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
         searchBar.delegate = self
         
         obtenerListaDiario()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if backTapped {
+            cervezasDiario.removeLast(1)
+            backTapped = false
+        }
     }
     
     func photoFromURL(urlString: String) -> UIImage {
@@ -186,6 +195,7 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
             vista.notas = actualList[indexPath.row].notas
             vista.foto = actualList[indexPath.row].foto
         } else {
+            backTapped = true
             let cervezaVacia = CervezaDiario()
             cervezasDiario.append(cervezaVacia)
             celdaActiva = cervezasDiario.count - 1
@@ -198,6 +208,16 @@ class DiarioTableViewController: UITableViewController, UISearchBarDelegate {
         cervezasDiario.append(cerveza)
         storeBeerDiary()
         tableView.reloadData()
+    }
+    
+    func selectLastRow() {
+        print(cervezasDiario.count)
+        print("SELECTED ROW: " + String(cervezasDiario.count - 1))
+        let n = cervezasDiario.count - 1
+        let indexPath = IndexPath(row: n, section: 1);
+        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
+        print("SAFE")
+        self.performSegue(withIdentifier: "DiaryDetail", sender: nil)
     }
     
     //MARK - Codable persistence for diary
