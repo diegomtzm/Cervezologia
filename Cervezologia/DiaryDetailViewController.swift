@@ -24,6 +24,8 @@ class DiaryDetailViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var imgFoto: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var vista: UIView!
+    @IBOutlet weak var btGuardar: UIButton!
+    @IBOutlet weak var Guardar: UIButton!
     
     var cervezaActual : CervezaDiario!
     
@@ -41,6 +43,9 @@ class DiaryDetailViewController: UIViewController, UIImagePickerControllerDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        btGuardar.layer.cornerRadius = 4
+        Guardar.layer.cornerRadius = 4
 
         cervezaActual = CervezaDiario(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, lugar: lugar, almacenamiento: almacenamiento, notas: notas, foto: foto)
         
