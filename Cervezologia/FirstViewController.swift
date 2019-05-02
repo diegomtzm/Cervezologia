@@ -28,6 +28,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkLocationAuthorizationStatus()
+        
     }
     
     override func viewDidLoad() {
@@ -65,17 +66,17 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         mapView.addAnnotation(cerveceria6)
         mapView.addAnnotation(cerveceria7)
         mapView.addAnnotation(cerveceria8)
+        
     }
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        //print("locations = \(locValue.latitude) \(locValue.longitude)")
-        
-        let location = locations.last! as CLLocation
+        if let location = locations.last {
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let coordinateRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         self.mapView.setRegion(coordinateRegion, animated: true)
+        locationManager.stopUpdatingLocation()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -112,10 +113,10 @@ extension FirstViewController: MKMapViewDelegate {
     }
     
     //MARK - Autorotate
-    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.landscape
     }
+    
     override var shouldAutorotate: Bool {
         return false
     }
