@@ -28,6 +28,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkLocationAuthorizationStatus()
+        
     }
     
     override func viewDidLoad() {
@@ -43,9 +44,9 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         //center map on user's current location
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
+        
         locationManager.startUpdatingLocation()
-        
-        
+       
         // show artwork on map
         let cerveceria1 = Cerveceria(title: "Sierra Madre Brewing Co.", locationName: "Av. Eugenio Garza Sada 4373, Contry, 64860 Monterrey, N.L.", businessHours: "Horario: 12:00-0:00", type: "Cerveceria", coordinate: CLLocationCoordinate2D(latitude: 25.625068, longitude: -100.274822))
         let cerveceria2 = Cerveceria(title: "Almacen 42", locationName: "Calle de Morelos 852, Barrio Antiguo, Centro, 64000 Monterrey, N.L.", businessHours: "Horario: 14:00-2:00", type: "Bar", coordinate: CLLocationCoordinate2D(latitude: 25.666625, longitude: -100.308229))
@@ -68,17 +69,17 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         mapView.addAnnotation(cerveceria6)
         mapView.addAnnotation(cerveceria7)
         mapView.addAnnotation(cerveceria8)
+        
     }
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        //print("locations = \(locValue.latitude) \(locValue.longitude)")
-        
-        let location = locations.last! as CLLocation
+        if let location = locations.last {
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let coordinateRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         self.mapView.setRegion(coordinateRegion, animated: true)
+        locationManager.stopUpdatingLocation()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -87,27 +88,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
 }
 
 extension FirstViewController: MKMapViewDelegate {
-    
-    
-    //Display annotation
-    /*
-     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-     guard let annotation = annotation as? Cerveceria else { return nil }
-     let identifier = "marker"
-     var view: MKMarkerAnnotationView
-     if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-     as? MKMarkerAnnotationView {
-     dequeuedView.annotation = annotation
-     view = dequeuedView
-     } else {
-     view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-     view.canShowCallout = true
-     view.calloutOffset = CGPoint(x: -5, y: 5)
-     view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-     }
-     return view
-     }*/
-    
     //Opens in map the location you tapped
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
@@ -117,10 +97,10 @@ extension FirstViewController: MKMapViewDelegate {
     }
     
     //MARK - Autorotate
-    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.landscape
     }
+    
     override var shouldAutorotate: Bool {
         return false
     }
