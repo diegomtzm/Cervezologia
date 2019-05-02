@@ -403,4 +403,13 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
         }
         return origenes
     }
+    
+    //MARK - Autorotate
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.landscape
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
 }

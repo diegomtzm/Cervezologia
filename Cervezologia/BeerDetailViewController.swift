@@ -123,8 +123,14 @@ class BeerDetailViewController: UIViewController {
         self.tabBarController?.selectedIndex = 2
     }
     
+    //MARK - Autorotate
     
-    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.landscape
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }    
 
     /*
     // MARK: - Navigation
