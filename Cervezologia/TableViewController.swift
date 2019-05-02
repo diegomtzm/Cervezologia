@@ -33,7 +33,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
                        "abv": ["", 0],
                        "ibu": ["", 0],
                        "srm": ["", 0]]
-
+    
+    var diarioVC : DiarioTableViewController!
     
     let alturaCelda = CGFloat(122)
 
@@ -55,7 +56,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
         self.navigationItem.leftItemsSupplementBackButton = true
         self.navigationItem.leftBarButtonItem = btFavorites
         
-        obtenerListaFavoritos()
+        let navigationCtrl = tabBarController?.viewControllers![2] as! UINavigationController
+        diarioVC = (navigationCtrl.viewControllers[0] as! DiarioTableViewController)
         
         getBeers()
     }
@@ -81,6 +83,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
                     self.cervezas.append(cerveza)
                 }
                 self.tableView.reloadData()
+                self.obtenerListaFavoritos()
+                self.diarioVC.obtenerListaDiario()
             }
         }
     }
@@ -148,14 +152,14 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
         self.tableView.reloadData()
     }
     
-    //MARK - Codable persistence
+    //MARK - Codable persistence for favorites
     func storeFavorites() {
         do {
             print(Cerveza.archiveURL.path)
             let data = try PropertyListEncoder().encode(favoriteCervezas)
             try data.write(to: Cerveza.archiveURL)
         } catch {
-            print("Save Failed")
+            print("Favorites save failed")
         }
     }
     
@@ -165,7 +169,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
             let fvts = try PropertyListDecoder().decode([Cerveza].self, from: data)
             return fvts
         } catch {
-            print("Error reading or decoding file")
+            print("Error reading or decoding favorites file")
             return [Cerveza]()
         }
     }
@@ -176,12 +180,9 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
         favoriteCervezas = tmp!
         for favorita in favoriteCervezas {
             favorita.isFavorite = true
-            if let index = cervezas.firstIndex(where: { (cerveza) -> Bool in
-                cerveza.nombre == favorita.nombre
-            }) {
+            if let index = cervezas.firstIndex(where: { $0.nombre == favorita.nombre }) {
                 cervezas[index].isFavorite = true
             }
-            
         }
     }
 
@@ -292,6 +293,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
             let foto = photoFromURL(urlString: actualList[indexPath.row].fotoURL)
             vista.foto = foto
             vista.isFavorite = actualList[indexPath.row].isFavorite
+            vista.inDiary = actualList[indexPath.row].inDiary
         } else {
             let vista = segue.destination as! FilterViewController
             vista.delegado = self
