@@ -45,7 +45,6 @@ class Cerveceria: NSObject, MKAnnotation {
         }
     }
     
-    
     // Annotation right callout accessory opens this mapItem in Maps app
     func mapItem() -> MKMapItem {
         let addressDict = [CNPostalAddressStreetKey: subtitle!]

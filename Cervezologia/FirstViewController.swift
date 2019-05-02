@@ -32,10 +32,8 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // set initial location
         //let initialLocation = CLLocation(latitude: 25.6714, longitude: -100.309)
-        
         mapView.delegate = self
         
         mapView.showsUserLocation = true
@@ -44,7 +42,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
-        
         
         // show artwork on map
         let cerveceria1 = Cerveceria(title: "Sierra Madre Brewing Co.", locationName: "Av. Eugenio Garza Sada 4373, Contry, 64860 Monterrey, N.L.", businessHours: "Horario: 12:00-0:00", type: "Cerveceria", coordinate: CLLocationCoordinate2D(latitude: 25.625068, longitude: -100.274822))
@@ -87,8 +84,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
 }
 
 extension FirstViewController: MKMapViewDelegate {
-    
-    
     //Display annotation
     /*
      func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

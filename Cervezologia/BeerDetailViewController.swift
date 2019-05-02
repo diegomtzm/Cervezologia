@@ -8,10 +8,6 @@
 
 import UIKit
 
-//protocol BeersDiary {
-//    func addToDiary(cerv: Cerveza)
-//}
-
 class BeerDetailViewController: UIViewController {
     
     @IBOutlet weak var lbNombre: UILabel!
@@ -45,9 +41,6 @@ class BeerDetailViewController: UIViewController {
         super.viewDidLoad()
 
         cervezaActual = Cerveza(nombre: nombre, estilo: estilo, cerveceria: cerveceria, origen: origen, abv: abv, ibu: ibu, srm: srm, fotoURL: fotourl)
-        
-        print("FAVORITE? " + String(isFavorite))
-        print("IN DIARY? " + String(inDiary))
         
         scrollView.contentSize = vista.frame.size
         
@@ -130,16 +123,5 @@ class BeerDetailViewController: UIViewController {
     }
     override var shouldAutorotate: Bool {
         return false
-    }    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
-
 }

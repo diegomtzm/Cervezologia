@@ -73,8 +73,6 @@ class DiaryDetailViewController: UIViewController, UIImagePickerControllerDelega
         view.endEditing(true)
     }
     
-    
-    
     //MARK - Image Picker
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
@@ -136,8 +134,6 @@ class DiaryDetailViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
-    
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -168,6 +164,4 @@ class DiaryDetailViewController: UIViewController, UIImagePickerControllerDelega
     override var shouldAutorotate: Bool {
         return false
     }
-    
-
 }

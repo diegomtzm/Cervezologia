@@ -60,7 +60,6 @@ class FilterViewController: UIViewController {
         ddSRM.didSelect { (text, index, id) in
             self.delegado.setUsedFilters(key: "srm", values: [text, index])
         }
-        
     }
     
     func preselectFilterOptions () {
