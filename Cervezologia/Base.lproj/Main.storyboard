@@ -456,7 +456,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origen con nombre muy largo" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wR5-Mr-lIv">
-                                                <rect key="frame" x="95" y="555" width="280" height="24.5"/>
+                                                <rect key="frame" x="40" y="555" width="335" height="24.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -512,7 +512,7 @@
                                             <constraint firstItem="wR5-Mr-lIv" firstAttribute="top" secondItem="gsC-81-etX" secondAttribute="bottom" id="4P3-4s-VUq"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KuP-NE-sjn" secondAttribute="trailing" constant="20" symbolic="YES" id="4pD-3d-HT0"/>
                                             <constraint firstItem="jjS-K1-gAS" firstAttribute="centerX" secondItem="LMx-xf-wJQ" secondAttribute="centerX" id="5YR-ZS-YHm"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Z6N-qd-NMK" secondAttribute="trailing" symbolic="YES" id="8uI-mh-t8h"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Z6N-qd-NMK" secondAttribute="trailing" constant="20" symbolic="YES" id="8uI-mh-t8h"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gsC-81-etX" secondAttribute="trailing" constant="20" symbolic="YES" id="9iu-em-7wk"/>
                                             <constraint firstAttribute="trailing" secondItem="wR5-Mr-lIv" secondAttribute="trailing" id="A88-pg-VLp"/>
                                             <constraint firstItem="1Ak-R2-kMm" firstAttribute="leading" secondItem="Kte-GZ-O8W" secondAttribute="leading" constant="40" id="ABm-6m-Gg5"/>
@@ -526,6 +526,7 @@
                                             <constraint firstItem="Z6N-qd-NMK" firstAttribute="top" secondItem="PNa-EJ-hVs" secondAttribute="bottom" id="KdO-5F-90o"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1Ak-R2-kMm" secondAttribute="trailing" symbolic="YES" id="MZy-Jp-cQq"/>
                                             <constraint firstItem="zdg-iW-inH" firstAttribute="top" secondItem="1Ak-R2-kMm" secondAttribute="bottom" constant="8" id="Mdz-Q3-K36"/>
+                                            <constraint firstItem="wR5-Mr-lIv" firstAttribute="leading" secondItem="Kte-GZ-O8W" secondAttribute="leading" constant="40" id="SQx-DF-m84"/>
                                             <constraint firstItem="Z6N-qd-NMK" firstAttribute="leading" secondItem="Kte-GZ-O8W" secondAttribute="leading" constant="40" id="TNP-gh-zdi"/>
                                             <constraint firstItem="GOL-XO-wCT" firstAttribute="leading" secondItem="v0J-hR-kJz" secondAttribute="trailing" constant="57" id="TVz-FT-EA6"/>
                                             <constraint firstItem="a7L-YP-Q6w" firstAttribute="top" secondItem="LMx-xf-wJQ" secondAttribute="bottom" constant="20" id="U06-vP-gm8"/>
@@ -539,7 +540,7 @@
                                             <constraint firstItem="KuP-NE-sjn" firstAttribute="leading" secondItem="Kte-GZ-O8W" secondAttribute="leading" constant="20" id="bLE-O6-bmN"/>
                                             <constraint firstItem="LMx-xf-wJQ" firstAttribute="top" secondItem="Kte-GZ-O8W" secondAttribute="top" id="egV-7n-Ban"/>
                                             <constraint firstItem="a7L-YP-Q6w" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xdj-fm-2O8" secondAttribute="trailing" constant="8" symbolic="YES" id="esF-nM-jKW"/>
-                                            <constraint firstItem="wR5-Mr-lIv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Kte-GZ-O8W" secondAttribute="leading" symbolic="YES" id="etk-ab-LaB"/>
+                                            <constraint firstItem="wR5-Mr-lIv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Kte-GZ-O8W" secondAttribute="leading" constant="20" symbolic="YES" id="etk-ab-LaB"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="G8y-Vb-8DW" secondAttribute="trailing" symbolic="YES" id="g48-7n-VI2"/>
                                             <constraint firstItem="LMx-xf-wJQ" firstAttribute="top" secondItem="Kte-GZ-O8W" secondAttribute="top" id="gvo-0c-EG3"/>
                                             <constraint firstAttribute="trailing" secondItem="a7L-YP-Q6w" secondAttribute="trailing" constant="20" id="iNZ-1D-bYr"/>
