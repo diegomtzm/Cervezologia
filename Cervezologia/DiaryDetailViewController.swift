@@ -19,7 +19,7 @@ class DiaryDetailViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var tfIBU: UITextField!
     @IBOutlet weak var tfABV: UITextField!
     @IBOutlet weak var tfLugar: UITextField!
-    @IBOutlet weak var ddAlmacenamiento: DropDown!
+    @IBOutlet weak var ddAlmacenamiento: UITextField!
     @IBOutlet weak var tvNotas: UITextView!
     @IBOutlet weak var imgFoto: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -51,10 +51,10 @@ class DiaryDetailViewController: UIViewController, UIImagePickerControllerDelega
         
         scrollView.contentSize = vista.frame.size
         
-        ddAlmacenamiento.optionArray = ["", "Botella", "Lata", "Barril"]
-        ddAlmacenamiento.selectedRowColor = UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 1)
-        ddAlmacenamiento.arrowSize = 12
-        ddAlmacenamiento.isSearchEnable = false
+//        ddAlmacenamiento.optionArray = ["", "Botella", "Lata", "Barril"]
+//        ddAlmacenamiento.selectedRowColor = UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 1)
+//        ddAlmacenamiento.arrowSize = 12
+//        ddAlmacenamiento.isSearchEnable = false
         
         tfNombre.text = nombre
         tfEstilo.text = estilo
