@@ -143,8 +143,6 @@ class FilterViewController: UIViewController {
             let ibuIdx = usedFilters["ibu"]?[1] as! Int
             let srmIdx = usedFilters["srm"]?[1] as! Int
             self.delegado.filter(estilo: estilo, cerveceria: cerveceria, origen: origen, abvIndex: abvIdx, ibuIndex: ibuIdx, srmIndex: srmIdx)
-            vista.verFavoritos = false
-            vista.btFavorites.image = UIImage(named: "star-small")
         } else {
             limpiarFiltros(btCancelar)
             vista.searchActive = false

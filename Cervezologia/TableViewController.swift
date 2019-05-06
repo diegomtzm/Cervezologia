@@ -118,24 +118,37 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
     
     //MARK: - Search bar functions
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true;
+        if (searchBar.text != "") {
+            searchActive = true;
+            print("TRUE")
+        }
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchActive = false;
+        print("FALSE")
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false;
+        print("FALSE")
+
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false;
+        print("FALSE")
+
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         //filtra cervezas por nombre o por estilo
-        filteredCervezas = cervezas.filter({ (cerveza) -> Bool in
+        if verFavoritos {
+            filteredCervezas = favoriteCervezas
+        } else {
+            filteredCervezas = cervezas
+        }
+        filteredCervezas = filteredCervezas.filter({ (cerveza) -> Bool in
             cerveza.nombre.lowercased().contains(searchText.lowercased()) || cerveza.estilo.lowercased().contains(searchText.lowercased())
         })
         if searchText == "" {
@@ -187,7 +200,9 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if verFavoritos {
+        if verFavoritos && searchActive {
+            return filteredCervezas.count
+        } else if verFavoritos {
             return favoriteCervezas.count
         } else if searchActive {
             return filteredCervezas.count
@@ -202,7 +217,12 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "idCell", for: indexPath) as! CustomTableViewCell
-        if verFavoritos {
+        if verFavoritos && searchActive {
+            cell.lbNombre.text = filteredCervezas[indexPath.row].nombre
+            cell.lbEstilo.text = filteredCervezas[indexPath.row].estilo
+            let foto = photoFromURL(urlString: filteredCervezas[indexPath.row].fotoURL)
+            cell.imgFoto.image = foto
+        } else if verFavoritos {
             cell.lbNombre.text = favoriteCervezas[indexPath.row].nombre
             cell.lbEstilo.text = favoriteCervezas[indexPath.row].estilo
             let foto = photoFromURL(urlString: favoriteCervezas[indexPath.row].fotoURL)
@@ -233,7 +253,9 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
             let vista = segue.destination as! BeerDetailViewController
             let indexPath = tableView.indexPathForSelectedRow!
             var actualList = [Cerveza]()
-            if verFavoritos {
+            if verFavoritos && searchActive {
+                actualList = filteredCervezas
+            } else if verFavoritos {
                 actualList = favoriteCervezas
             } else if searchActive {
                 actualList = filteredCervezas
@@ -266,7 +288,12 @@ class TableViewController: UITableViewController, UISearchBarDelegate, FilterOpt
     
     // MARK: - FilterOptions protocol
     func filter(estilo: String, cerveceria: String, origen: String, abvIndex: Int, ibuIndex: Int, srmIndex: Int) {
-        filteredCervezas = cervezas
+        if verFavoritos {
+            filteredCervezas = favoriteCervezas
+        } else {
+            filteredCervezas = cervezas
+        }
+        
         if (estilo != "") {
             filteredCervezas = filteredCervezas.filter( { (cerveza) -> Bool in
                 cerveza.estilo.lowercased().elementsEqual(estilo.lowercased())
